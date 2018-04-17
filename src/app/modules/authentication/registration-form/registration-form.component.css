@@ -1,0 +1,39 @@
+h2 {
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+p {
+	text-align: center;
+}
+
+a {
+	color: #2642e4;
+}
+
+div.container {
+	margin-top: 2.5rem;
+}
+
+div.button {
+	text-align: right;
+}
+
+input {
+	font-size: 1.2rem;
+}
+
+button {
+	font-weight: 600;
+	background-color: #2642e4;
+	padding: 0.5rem 2rem;
+	font-size: 1.1rem;
+}
+
+.form-control:focus {
+	border-color: #2642e4;
+	box-shadow: none;
+	outline: 0 none;
+}
