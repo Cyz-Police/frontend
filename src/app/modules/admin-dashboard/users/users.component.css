@@ -21,6 +21,7 @@ h2 {
 	font-weight: 600;
 	letter-spacing: 1px;
 	margin-bottom: 2rem;
+	margin-top: 8.7rem;
 }
 
 button {
@@ -50,4 +51,15 @@ p {
 	line-height: 38px;
 	vertical-align: middle;
 	margin: 0;
+}
+
+.name {
+	white-space: nowrap;
+	overflow: scroll;
+}
+
+::-webkit-scrollbar {
+	width: 0px;  /* remove scrollbar space */
+	height: 0px;
+	background: transparent;  /* optional: just make scrollbar invisible */
 }

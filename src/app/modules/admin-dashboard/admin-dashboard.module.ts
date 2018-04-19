@@ -8,12 +8,16 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AdminDashboardComponent } from './admin-dashboard.component';
 import { CountysComponent } from './countys/countys.component';
 import { UsersComponent } from './users/users.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { TypesComponent } from './types/types.component';
 
 const Routes = [
   { path: 'dashboard', component: AdminDashboardComponent,
     children: [
       { path: 'countys', component: CountysComponent },
-      { path: 'users', component: UsersComponent }
+      { path: 'users', component: UsersComponent },
+      { path: 'categories', component: CategoriesComponent },
+      { path: 'types', component: TypesComponent }
     ]}
 ];
 
@@ -22,7 +26,7 @@ const Routes = [
     CommonModule,
     RouterModule.forRoot(Routes)
   ],
-  declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountysComponent, UsersComponent],
+  declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountysComponent, UsersComponent, CategoriesComponent, TypesComponent],
   exports: [RouterModule]
 })
 export class AdminDashboardModule { }

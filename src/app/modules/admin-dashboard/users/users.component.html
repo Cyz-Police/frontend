@@ -2,38 +2,20 @@
   <h2>Naudotojai</h2>
   <input type="text" placeholder="Paieška" class="form-control">
   <ul class="list-group">
-    <li class="list-group-item">
+    <li class="list-group-item" *ngFor='let number of [0,1,2,3,4,1,1,1,1,1,1,1,11,1,1,1,1,11,1,1]'>
       <div class="cotainer-fluid">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col col-xs-6 name">
             <p>Dominykas Seputis</p>
           </div>
-          <div class="col col-md-3">
+          <div class="col col-xs-3">
             <select class="custom-select" id="inputGroupSelect01">
               <option selected>Administratorius</option>
               <option value="1">Valdytojas</option>
             </select>
           </div>
-          <div class="col col-md-3 text-center">
-            <button class="btn deactivated float-right">Aktyvuotas</button>
-          </div>
-        </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="cotainer-fluid">
-        <div class="row">
-          <div class="col-md-6">
-            <p>Dominykas Seputis</p>
-          </div>
-          <div class="col col-md-3">
-            <select class="custom-select" id="inputGroupSelect01">
-              <option selected>Administratorius</option>
-              <option value="1">Valdytojas</option>
-            </select>
-          </div>
-          <div class="col col-md-3 text-center">
-            <button class="btn deactivated float-right">Aktyvuotas</button>
+          <div class="col col-xs-3 text-center">
+            <button class="btn activated float-right">Aktyvuotas</button>
           </div>
         </div>
       </div>
