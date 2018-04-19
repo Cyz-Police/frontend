@@ -10,7 +10,7 @@ p {
 }
 
 a {
-	color: #2642e4;
+	color: #0d9bde;
 }
 
 div.container {
@@ -26,14 +26,22 @@ input {
 }
 
 button {
-	background-color: #2642e4;
+	font-weight: 600;
+	background-color: #eb008d;
 	padding: 0.5rem 2rem;
 	font-size: 1.1rem;
-	font-weight: 600;
+	border: 0;
+}
+
+button:hover,
+button:active {
+	background-color: #eb008d!important;
+	border: 0;
+	outline: 0!important;
 }
 
 .form-control:focus {
-	border-color: #2642e4;
+	border-color: #0d9bde;
 	box-shadow: none;
 	outline: 0 none;
 }
