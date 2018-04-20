@@ -1,41 +1,5 @@
 <div class="content">
-  <h2>Apskritys</h2>
-  <div class="container-fuild">
-    <div class="row">
-      <div class="col col-xs-10">
-        <input type="text" placeholder="Paieška" class="form-control">
-      </div>
-      <div class="col col-xs-2">
-        <button class="btn add">
-          <i class="material-icons">add</i>
-        </button>
-      </div>
-    </div>
-  </div>
-  <ul class="list-group">
-    <li class="list-group-item">
-      <div class="cotainer-fluid">
-        <div class="row">
-          <div class="col-xs-9">
-            <input value="Kaunas" class="city"/>
-          </div>
-          <div class="col col-xs-3 text-center">
-            <button class="btn activated float-right">Redaguoti</button>
-          </div>
-        </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="cotainer-fluid">
-        <div class="row">
-          <div class="col-xs-9">
-            <input value="Vilnius" class="city"/>
-          </div>
-          <div class="col col-xs-3 text-center">
-            <button class="btn disabled activated float-right">Redaguoti</button>
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
+  <h2 class="title">{{ title }}</h2>
+  <app-common-searchbar></app-common-searchbar>
+  <app-common-list [values]="countys"></app-common-list>
 </div>

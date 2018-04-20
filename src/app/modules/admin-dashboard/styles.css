@@ -1,15 +1,15 @@
 .content {
-	margin-top: 90px;
+	margin-top: 8rem;
 	margin-bottom: 90px;
 }
 
-input {
+.search {
 	padding: .7rem;
 	padding-left: 1.2rem;
 	margin-bottom: 1rem;
 }
 
-input:focus {
+.search:focus {
   border: 1px solid #0d9bde;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
@@ -76,3 +76,12 @@ input.city:focus {
   box-shadow: none !important;
 }
 
+::-webkit-scrollbar {
+	width: 0px;  /* remove scrollbar space */
+	height: 0px;
+	background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+.input {
+	overflow: scroll;
+}

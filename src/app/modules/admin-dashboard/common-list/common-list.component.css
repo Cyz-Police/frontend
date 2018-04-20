@@ -1,0 +1,38 @@
+button {
+	font-weight: 600;
+	border-radius: 10px;
+	border: 2px solid #eb008d;
+}
+
+.activated {
+	background-color: #eb008d;
+	color: white;
+}
+
+.edit {
+	padding: 0 1.5rem!important;
+	overflow: scroll;
+	border: 0;
+	margin: 0;
+	color: #888a8c;
+	vertical-align: middle;
+	padding: .4rem;
+}
+
+.edit:hover {
+	color: #212529;
+}
+
+.edit:focus {	
+	border: 0;
+	outline: 0;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+::-webkit-scrollbar {
+	width: 0px;
+	height: 0px;
+	background: transparent;
+}

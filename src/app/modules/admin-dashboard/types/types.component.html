@@ -1,41 +1,5 @@
 <div class="content">
-  <h2>Tipai</h2>
-  <div class="container-fuild">
-    <div class="row">
-      <div class="col col-md-10">
-        <input type="text" placeholder="Paieška" class="form-control">
-      </div>
-      <div class="col col-md-2">
-        <button class="btn add">
-          <i class="material-icons">add</i>
-        </button>
-      </div>
-    </div>
-  </div>
-  <ul class="list-group">
-    <li class="list-group-item">
-      <div class="cotainer-fluid">
-        <div class="row">
-          <div class="col-md-9">
-            <input value="iPhone 6S" class="city"/>
-          </div>
-          <div class="col col-md-3 text-center">
-            <button class="btn activated float-right">Redaguoti</button>
-          </div>
-        </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="cotainer-fluid">
-        <div class="row">
-          <div class="col-md-9">
-            <input value="Kalnų" class="city"/>
-          </div>
-          <div class="col col-md-3 text-center">
-            <button class="btn disabled activated float-right">Redaguoti</button>
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
+  <h2 class="title">{{ title }}</h2>
+  <app-common-searchbar></app-common-searchbar>
+  <app-common-list></app-common-list>
 </div>
