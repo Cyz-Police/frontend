@@ -4,17 +4,16 @@ button {
 	border: 2px solid #eb008d;
 }
 
-button:active {
-	outline: 0;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
-
-}
-
-.activated {
+.activated,
+.deactivated:hover {
 	background-color: #eb008d;
 	color: white;
+}
+
+.deactivated,
+.activated:hover {
+	background-color: white;
+	color: #eb008d;
 }
 
 .edit {
@@ -39,8 +38,14 @@ button:active {
   box-shadow: none !important;
 }
 
-.input-text {
+.name {
+	white-space: nowrap;
 	overflow: scroll;
+}
+
+p.name {
+	line-height: 2.1rem;
+	margin: 0;
 }
 
 ::-webkit-scrollbar {

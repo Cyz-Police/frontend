@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class CategoriesComponent implements OnInit {
   private title = 'Kategorijos';
 
+  private categories = ['Telefonai', 'Dviraciai', 'Kompiuteriai'];
+
   constructor() { }
 
   ngOnInit() {

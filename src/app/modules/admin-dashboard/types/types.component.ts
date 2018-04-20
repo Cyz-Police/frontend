@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['../styles.css']
 })
 export class TypesComponent implements OnInit {
+  private title = 'Tipai';
+
+  private types = ['iPhone 6s', 'Samsung Galaxy S7', 'Kalnu'];
 
   constructor() { }
 
