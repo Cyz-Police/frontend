@@ -1,6 +1,6 @@
 <div class="content">
   <h2 class="title">{{ title }}</h2>
-  <app-common-searchbar></app-common-searchbar>
-  <app-common-list [values]="categories" ></app-common-list>
+  <app-common-searchbar (passSearch)="onSearch($event)"></app-common-searchbar>
+  <app-common-list [values]="categories" [searchValue]="searchValue" ></app-common-list>
 </div>
 

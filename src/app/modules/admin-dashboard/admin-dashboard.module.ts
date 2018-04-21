@@ -13,12 +13,13 @@ import { TypesComponent } from './types/types.component';
 import { CommonListComponent } from './common-list/common-list.component';
 import { CommonSearchbarComponent } from './common-searchbar/common-searchbar.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { CommonFilterPipe } from './pipes/common-filer.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     AdminDashboardRoutingModule
   ],
-  declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountysComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonListComponent, CommonSearchbarComponent, UsersListComponent],
+  declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountysComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonListComponent, CommonSearchbarComponent, UsersListComponent, CommonFilterPipe],
 })
 export class AdminDashboardModule { }

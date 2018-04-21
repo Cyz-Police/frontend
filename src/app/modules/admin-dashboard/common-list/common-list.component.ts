@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Pipe } from '@angular/core';
 
 @Component({
   selector: 'app-common-list',
@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CommonListComponent implements OnInit {
   @Input() values;
+  @Input() searchValue;
 
   constructor() { }
 

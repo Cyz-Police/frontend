@@ -8,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class CountysComponent implements OnInit {
   private title = 'Apskritys';
   private countys = ['Kaunas', 'Vilnius', 'Klaipeda'];
+  private searchValue;
+
+  onSearch(message:string):void {
+    this.searchValue = message;
+  }
 
   constructor() { }
 
