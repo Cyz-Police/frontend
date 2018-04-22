@@ -13,7 +13,7 @@ export class UsersComponent implements OnInit {
   private searchValue;
   private users: User[];
   private err;
-  private loading;
+  private loading: boolean = false;
   private userId;
 
   private roles = [
@@ -30,38 +30,38 @@ export class UsersComponent implements OnInit {
     private userServivces: UserServicesService,
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.loading = true;
-    console.log('loading');
-    await this.getUsers();
-    this.loading = false;
-    console.log('loaded');
+    this.getUsers();
   }
 
   getUsers() {
     return this.userServivces.getAllUsers().subscribe(
       users => {
+        this.loading = false;
         this.users = users;
       },
       err => {
+        this.loading = false;
         this.err = err;
       }
     )
   }
 
-  async changeUserStatus(user: any) {
+  changeUserStatus(user: any) {
     if (user.active) {
-      await this.userServivces.deactivateUser(user._id).subscribe();
+      this.loading = true;
+      this.userServivces.deactivateUser(user._id).subscribe(()=> this.getUsers());
     } else {
-      await this.userServivces.activateUser(user._id).subscribe();
+      this.loading = true;
+      this.userServivces.activateUser(user._id).subscribe(()=>this.getUsers());
     }
-    this.getUsers();
   }
 
-  async changeUserRole(user: any, event: any) {
+  changeUserRole(user: any, event: any) {
     const role = event.target.value;
     if (user.role == role ) return;
-    await this.userServivces.changeUsersRole(user._id, role).subscribe();
-    this.getUsers();
+    this.loading = true;
+    this.userServivces.changeUsersRole(user._id, role).subscribe(() => this.getUsers());
   }
 }
