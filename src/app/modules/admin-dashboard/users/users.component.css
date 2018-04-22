@@ -1,7 +1,21 @@
+.content {
+	margin-top: 8rem;
+	margin-bottom: 90px;
+}
+
+h2 {
+	font-family: 'Lato', sans-serif;
+	font-weight: 600;
+	letter-spacing: 1px;
+	margin-bottom: 1.2rem;
+}
+
 button {
 	font-weight: 600;
 	border-radius: 10px;
 	border: 2px solid #eb008d;
+	min-width: 50%;
+	max-width: 100%;
 }
 
 .activated,

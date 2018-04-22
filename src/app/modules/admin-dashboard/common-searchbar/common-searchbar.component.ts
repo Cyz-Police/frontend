@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-common-searchbar',
@@ -6,6 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./common-searchbar-component.css']
 })
 export class CommonSearchbarComponent implements OnInit {
+  @Input() private filter;
   @Output() passSearch: EventEmitter<string> = new EventEmitter<string>();
 
   onInput(event: any) {

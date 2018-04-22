@@ -1,0 +1,13 @@
+<div class="container-fuild">
+  <div class="row justify-content-start">
+    <div class="col col-xs-2">
+      {{ title }}
+    </div>
+    <div class="col col-xs-2">
+      <select class="form-control form-control-md" (change)="onChange($event)">
+        <option selected label="------"></option>
+        <option *ngFor="let option of options">{{ option }}</option>
+      </select>
+    </div>
+  </div>
+</div>

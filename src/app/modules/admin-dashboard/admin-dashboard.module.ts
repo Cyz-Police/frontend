@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 import { AdminDashboardRoutingModule } from './admin-dashboard-routing.module';
 import { HeaderComponent } from './header/header.component';
@@ -12,14 +13,20 @@ import { CategoriesComponent } from './categories/categories.component';
 import { TypesComponent } from './types/types.component';
 import { CommonListComponent } from './common-list/common-list.component';
 import { CommonSearchbarComponent } from './common-searchbar/common-searchbar.component';
-import { UsersListComponent } from './users-list/users-list.component';
 import { CommonFilterPipe } from './pipes/common-filer.pipe';
+import { UsersFilterPipe } from './pipes/users-filter.pipe';
+import { CommonFilterComponent } from './common-filter/common-filter.component';
+import { UserServicesService } from './services/user-services.service';
+import { MapToIterable } from './pipes/map.pipe';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpModule,
     AdminDashboardRoutingModule
   ],
-  declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountysComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonListComponent, CommonSearchbarComponent, UsersListComponent, CommonFilterPipe],
+  declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountysComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonListComponent, CommonSearchbarComponent, CommonFilterPipe, UsersFilterPipe, CommonFilterComponent, MapToIterable, LoaderComponent],
+  providers: [UserServicesService]
 })
 export class AdminDashboardModule { }

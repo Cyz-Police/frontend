@@ -1,5 +1,34 @@
 <div class="content">
   <h2>{{ title }}</h2>
-  <app-common-searchbar></app-common-searchbar>
-  <app-users-list [users]="users"></app-users-list>
+  <app-common-searchbar (passSearch)="onSearch($event)"></app-common-searchbar>
+  <app-loader [loading]="loading"></app-loader>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let user of users | usersFilter: searchValue">
+      <div class="cotainer-fluid">
+        <div class="row">
+          <div class="col col-xs-6 name">
+            <p class="name">{{ user.fullName }}</p>
+          </div>
+          <div class="col col-xs-3">
+            <select class="custom-select" (change)="changeUserRole(user, $event)">
+              <option
+                *ngFor="let role of roles"
+                value="{{ role.role }}"
+                [selected]="user.role == role.role">
+                {{ role.title }}
+              </option>
+            </select>
+          </div>
+          <div class="col col-xs-3 text-center">
+            <button
+              class="btn float-right"
+              [ngClass]="user.active ? 'activated' : 'deactivated'"
+              (click)="changeUserStatus(user)">
+              {{ user.active ? 'Aktyvuotas' : 'Neaktyvuotas'  }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>
