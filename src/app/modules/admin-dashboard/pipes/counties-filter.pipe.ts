@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'countiesFilter'
 })
 
-export class CommonFilterPipe implements PipeTransform {
+export class CountyFilterPipe implements PipeTransform {
   transform(items: any[], countyId: string): any[] {
     if(!items) return [];
     if(!countyId) return items;

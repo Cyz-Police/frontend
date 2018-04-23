@@ -16,8 +16,9 @@ import { CommonSearchbarComponent } from './common-searchbar/common-searchbar.co
 import { CommonFilterPipe } from './pipes/common-filer.pipe';
 import { UsersFilterPipe } from './pipes/users-filter.pipe';
 import { CommonFilterComponent } from './common-filter/common-filter.component';
+import { CountyFilterPipe } from './pipes/counties-filter.pipe';
 import { UserServicesService } from './services/user-services.service';
-import { MapToIterable } from './pipes/map.pipe';
+import { CountyService } from './services/county.service';
 import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
@@ -26,7 +27,10 @@ import { LoaderComponent } from './loader/loader.component';
     HttpModule,
     AdminDashboardRoutingModule
   ],
-  declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountysComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonListComponent, CommonSearchbarComponent, CommonFilterPipe, UsersFilterPipe, CommonFilterComponent, MapToIterable, LoaderComponent],
-  providers: [UserServicesService]
+  declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountysComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonListComponent, CommonSearchbarComponent, CommonFilterPipe, UsersFilterPipe, CountyFilterPipe, CommonFilterComponent, LoaderComponent],
+  providers: [
+    UserServicesService,
+    CountyService
+  ]
 })
 export class AdminDashboardModule { }

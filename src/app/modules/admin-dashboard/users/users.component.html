@@ -1,14 +1,20 @@
 <div class="content">
   <h2>{{ title }}</h2>
   <app-common-searchbar (passSearch)="onSearch($event)"></app-common-searchbar>
-  <app-loader [loading]="loading"></app-loader>
-  <div class="container" *ngIf="a > 5">
-    <div class="row">
-      <div class="loader"></div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col col-4 text-center">Apskritis</div>
+      <div class="col col-4">
+        <select class="custom-select" (change)="countiesFilter(user, $event)">
+          <option selected value="">---------</option>
+          <option *ngFor="let county of counties" value="{{ county._id }}">{{ county.name }}</option>
+        </select>
+      </div>
     </div>
   </div>
+  <app-loader [loading]="loading"></app-loader>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let user of users | usersFilter: searchValue">
+    <li class="list-group-item" *ngFor="let user of users | usersFilter: searchValue | countiesFilter: selectedCounty">
       <div class="cotainer-fluid">
         <div class="row">
           <div class="col col-xs-6 name">

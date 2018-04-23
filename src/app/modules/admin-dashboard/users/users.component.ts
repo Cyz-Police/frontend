@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServicesService } from './../services/user-services.service';
+import { CountyService } from './../services/county.service';
 import { User } from './../interfaces/user';
+import { County } from './../interfaces/county';
 
 @Component({
   selector: 'app-users',
@@ -9,9 +11,11 @@ import { User } from './../interfaces/user';
 })
 
 export class UsersComponent implements OnInit {
+  private users: User[];
+  private counties: County[];
   private title = 'Naudotojai';
   private searchValue;
-  private users: User[];
+  private selectedCounty;
   private err;
   private loading: boolean = false;
   private userId;
@@ -26,12 +30,26 @@ export class UsersComponent implements OnInit {
     this.searchValue = message;
   }
 
+  countiesFilter(user: User, event: any) {
+    const countyId = event.target.value;
+    this.selectedCounty = countyId;
+  }
+
   constructor(
     private userServivces: UserServicesService,
+    private countyService: CountyService
   ) { }
 
   ngOnInit() {
     this.loading = true;
+    this.countyService.getAllCounties().subscribe(
+      counties => {
+        this.counties = counties;
+      },
+      err => {
+        this.err = err;
+      }
+    );
     this.getUsers();
   }
 

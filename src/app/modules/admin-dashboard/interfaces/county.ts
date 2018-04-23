@@ -1,5 +1,5 @@
 export interface County {
-	id: string,
+	_id: string,
 	title: string,
 	assignedId: number,
 }
