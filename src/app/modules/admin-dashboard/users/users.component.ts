@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit {
 
   private roles = [
     { role: '[USER]', title: 'Darbuotojas' },
-    { role: '[ADMIN]', title: 'Virsininkas' },
+    { role: '[ADMIN]', title: 'Viršininkas' },
     { role: '[SUPERADMIN]', title: 'Administratorius' }
   ];
 
@@ -41,23 +41,29 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getCounties();
+    this.getUsers();
+  }
+
+  getCounties() {
     this.loading = true;
     this.countyService.getAllCounties().subscribe(
       counties => {
         this.counties = counties;
+        this.loading = false;
       },
       err => {
         this.err = err;
       }
     );
-    this.getUsers();
   }
 
   getUsers() {
+    this.loading = true;
     return this.userServivces.getAllUsers().subscribe(
       users => {
-        this.loading = false;
         this.users = users;
+        this.loading = false;
       },
       err => {
         this.loading = false;

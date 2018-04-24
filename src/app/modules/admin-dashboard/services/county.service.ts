@@ -14,11 +14,16 @@ export class CountyService {
   private mainUrl = `${Constants.host}/county`;
 
   private getAllUrl = `${this.mainUrl}/getAll`;
+  private validationUrl = `${this.mainUrl}/validate`;
 
   constructor(private http: Http) { }
 
   getAllCounties(): Observable<County[]> {
     return this.http.get(this.getAllUrl).map(this.extractData).catch(this.handleError);
+  }
+
+  sendToValidate(title) {
+    return this.http.post(this.validationUrl, { title }).map(this.extractData).catch(this.handleError);
   }
  
   private extractData(res: Response) {

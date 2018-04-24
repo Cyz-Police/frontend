@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Pipe } from '@angular/core';
+import { Component, OnInit, Input, Pipe, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-common-list',
@@ -8,10 +8,14 @@ import { Component, OnInit, Input, Pipe } from '@angular/core';
 export class CommonListComponent implements OnInit {
   @Input() values;
   @Input() searchValue;
+  @Output() passTitle: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onKeyUp(event: any) {
+    this.passTitle.emit(event.target.value);
+  }
 }

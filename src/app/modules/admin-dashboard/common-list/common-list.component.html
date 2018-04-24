@@ -3,7 +3,7 @@
     <div class="cotainer-fluid">
       <div class="row">
         <div class="col col-xs-9 input-text">
-          <input value="{{value}}" class="edit"/>
+          <input value="{{ value.title }}" class="edit" (keyup)="onKeyUp($event)"/>
         </div>
         <div class="col col-xs-3 text-center">
           <button class="btn activated float-right">Redaguoti</button>

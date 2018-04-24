@@ -3,11 +3,13 @@
   <app-common-searchbar (passSearch)="onSearch($event)"></app-common-searchbar>
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col col-4 text-center">Apskritis</div>
+      <div class="col col-4 text-center">
+        <p class="filter">Apskritis</p>
+      </div>
       <div class="col col-4">
         <select class="custom-select" (change)="countiesFilter(user, $event)">
           <option selected value="">---------</option>
-          <option *ngFor="let county of counties" value="{{ county._id }}">{{ county.name }}</option>
+          <option *ngFor="let county of counties" value="{{ county._id }}">{{ county.title }}</option>
         </select>
       </div>
     </div>
