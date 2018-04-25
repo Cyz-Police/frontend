@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AdminDashboardRoutingModule } from './admin-dashboard-routing.module';
 import { HeaderComponent } from './header/header.component';
@@ -24,7 +26,9 @@ import { LoaderComponent } from './loader/loader.component';
   imports: [
     CommonModule,
     HttpModule,
-    AdminDashboardRoutingModule
+    AdminDashboardRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountiesComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonListComponent, CommonSearchbarComponent, CommonFilterPipe, UsersFilterPipe, CountyFilterPipe, LoaderComponent],
   providers: [

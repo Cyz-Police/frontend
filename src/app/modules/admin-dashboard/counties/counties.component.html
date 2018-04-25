@@ -3,17 +3,20 @@
   <app-common-searchbar (passSearch)="onSearch($event)"></app-common-searchbar>
   <app-loader [loading]="loading"></app-loader>
   <ul class="list-group">
-    <li class="list-group-item" [ngClass]="{'danger': !canUpdate}" *ngFor="let county of counties | filter: searchValue">
-      <div class="cotainer-fluid">
-        <div class="row">
-          <div class="col col-xs-9 input-text">
-            <input value="{{ county.title }}" class="edit" (keyup)="onTitleChange($event)"/>
-          </div>
-          <div class="col col-xs-3 text-center">
-            <button class="btn activated float-right" [ngClass]="{'disabled': !canUpdate}">Redaguoti</button>
+    <form [formGroup]="countyForm">
+      <li class="list-group-item" *ngFor="let county of counties | filter: searchValue">
+        <div class="cotainer-fluid">
+          <div class="row">
+            <div class="col col-xs-9 input-text">
+              <input formControlName="title" [value]="county.title" class="edit" (keyup)="onTitleChange($event)"/>
+              <p>{{ countyForm.value | json }}</p>
+            </div>
+            <div class="col col-xs-3 text-center">
+              <button class="btn activated float-right" [ngClass]="{'disabled': !canUpdate}">Redaguoti</button>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </form>
   </ul>
 </div>

@@ -19,6 +19,7 @@ export class UsersComponent implements OnInit {
   private err;
   private loading: boolean = false;
   private userId;
+  private message: string; 
 
   private roles = [
     { role: '[USER]', title: 'Darbuotojas' },
@@ -75,10 +76,31 @@ export class UsersComponent implements OnInit {
   changeUserStatus(user: any) {
     if (user.active) {
       this.loading = true;
-      this.userServivces.deactivateUser(user._id).subscribe(()=> this.getUsers());
+      this.userServivces.deactivateUser(user._id).subscribe(
+        () => {
+          this.getUsers();
+           this.message = "Naudotojo statusas pakeistas";
+          setTimeout(() => { 
+          this.message = undefined;
+            console.log(this.message);
+          }, 3000);
+          console.log(this.message);
+        }
+        );
     } else {
       this.loading = true;
-      this.userServivces.activateUser(user._id).subscribe(()=>this.getUsers());
+      this.userServivces.activateUser(user._id).subscribe(
+
+        () => {
+          this.getUsers();
+            this.message = "Naudotojo statusas pakeistas";
+          setTimeout(() => { 
+          this.message = undefined;
+            console.log(this.message);
+          }, 3000);
+          console.log(this.message);
+        }
+      );
     }
   }
 
