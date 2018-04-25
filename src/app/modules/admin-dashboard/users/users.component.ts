@@ -13,28 +13,16 @@ import { County } from './../interfaces/county';
 export class UsersComponent implements OnInit {
   private users: User[];
   private counties: County[];
-  private title = 'Naudotojai';
   private searchValue;
   private selectedCounty;
-  private err;
   private loading: boolean = false;
-  private userId;
-  private message: string; 
+  private message: string;
 
   private roles = [
     { role: '[USER]', title: 'Darbuotojas' },
     { role: '[ADMIN]', title: 'Viršininkas' },
     { role: '[SUPERADMIN]', title: 'Administratorius' }
   ];
-
-  onSearch(message:string):void {
-    this.searchValue = message;
-  }
-
-  countiesFilter(user: User, event: any) {
-    const countyId = event.target.value;
-    this.selectedCounty = countyId;
-  }
 
   constructor(
     private userServivces: UserServicesService,
@@ -45,6 +33,15 @@ export class UsersComponent implements OnInit {
     this.getCounties();
     this.getUsers();
   }
+  
+  onSearch(text: string):void {
+    this.searchValue = text;
+  }
+
+  onCountyChange(user: User, event: any) {
+    const countyId = event.target.value;
+    this.selectedCounty = countyId;
+  }
 
   getCounties() {
     this.loading = true;
@@ -54,7 +51,8 @@ export class UsersComponent implements OnInit {
         this.loading = false;
       },
       err => {
-        this.err = err;
+        this.loading = false;
+        this.showToast('Serveris nepasiekiamas');
       }
     );
   }
@@ -68,7 +66,7 @@ export class UsersComponent implements OnInit {
       },
       err => {
         this.loading = false;
-        this.err = err;
+        this.showToast('Serveris nepasiekiamas');
       }
     )
   }
@@ -79,26 +77,21 @@ export class UsersComponent implements OnInit {
       this.userServivces.deactivateUser(user._id).subscribe(
         () => {
           this.getUsers();
-           this.message = "Naudotojo statusas pakeistas";
-          setTimeout(() => { 
-          this.message = undefined;
-            console.log(this.message);
-          }, 3000);
-          console.log(this.message);
+          this.showToast('Naudotojas deaktyvuotas')
+        }, err =>  {
+          this.loading = false;
+          this.showToast('Naudotojo deaktyvuoti nepavyko');
         }
-        );
+      );
     } else {
       this.loading = true;
       this.userServivces.activateUser(user._id).subscribe(
-
         () => {
           this.getUsers();
-            this.message = "Naudotojo statusas pakeistas";
-          setTimeout(() => { 
-          this.message = undefined;
-            console.log(this.message);
-          }, 3000);
-          console.log(this.message);
+          this.showToast('Naudotojas aktyvuotas')
+        }, err => {
+          this.loading = false;
+          this.showToast('Nepavyko aktyvuoti naudotojo');
         }
       );
     }
@@ -108,6 +101,22 @@ export class UsersComponent implements OnInit {
     const role = event.target.value;
     if (user.role == role ) return;
     this.loading = true;
-    this.userServivces.changeUsersRole(user._id, role).subscribe(() => this.getUsers());
+    this.userServivces.changeUsersRole(user._id, role).subscribe(
+      () => {
+        this.getUsers();
+        this.showToast('Naudotojo rolė paskeista');
+      }, err =>  {
+        this.loading = false;
+        this.showToast('Rolės pakeisti nepavyko');
+      }
+    );
+  }
+
+  showToast(message: string) {
+    this.message = message;
+    setTimeout(() => { 
+      this.message = undefined;
+        console.log(this.message);
+    }, 2800);
   }
 }
