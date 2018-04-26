@@ -21,6 +21,7 @@ import { CountyFilterPipe } from './pipes/counties-filter.pipe';
 import { UserServicesService } from './services/user-services.service';
 import { CountyService } from './services/county.service';
 import { LoaderComponent } from './loader/loader.component';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { LoaderComponent } from './loader/loader.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountiesComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonListComponent, CommonSearchbarComponent, CommonFilterPipe, UsersFilterPipe, CountyFilterPipe, LoaderComponent],
+  declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountiesComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonListComponent, CommonSearchbarComponent, CommonFilterPipe, UsersFilterPipe, CountyFilterPipe, LoaderComponent, ToastComponent],
   providers: [
     UserServicesService,
     CountyService

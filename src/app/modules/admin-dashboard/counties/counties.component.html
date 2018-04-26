@@ -3,11 +3,13 @@
   <app-common-searchbar (passSearch)="onSearch($event)"></app-common-searchbar>
   <app-loader [loading]="loading"></app-loader>
   <ul class="list-group">
-    <li class="list-group-item" [ngClass]="{'danger': county.isValid == false}" *ngFor="let county of counties | filter: searchValue">
+    <li class="list-group-item" *ngFor="let county of counties | filter: searchValue">
       <div class="cotainer-fluid">
         <div class="row">
           <div class="col col-xs-9 input-text">
             <input value="{{ county.title }}" class="edit" (keyup)="onTitleChange($event, county)"/>
+            <span *ngIf="county.isValid"><i class="material-icons valid">done</i></span>
+            <span *ngIf="county.isValid == false"><i class="material-icons invalid">clear</i></span>
           </div>
           <div class="col col-xs-3 text-center">
             <button class="btn activated float-right" [ngClass]="{'disabled': !county.isValid}">Redaguoti</button>
