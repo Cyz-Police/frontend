@@ -11,7 +11,7 @@ export class ToastComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('Perduotas pranesimas: ',this.message);
+    console.log('Perduotas pranesimas: ', this.message);
   }
 
 }
