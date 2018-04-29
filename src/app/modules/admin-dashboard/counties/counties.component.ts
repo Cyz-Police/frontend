@@ -9,13 +9,12 @@ import {Observable} from  "rxjs/Rx";
   templateUrl: './counties.component.html',
   styleUrls: ['./counties.component.css']
 })
+
 export class CountiesComponent implements OnInit {
-  private title = 'Apskritys';
   private searchValue;
   private loading: boolean = false;
   private counties: County[];
-  private countyTitleQuery: string;
-  private countyTitleQueryChanged: Subject<string> = new Subject<string>();
+  private timeout;
 
   constructor(
     private countyService: CountyService,
@@ -42,15 +41,31 @@ export class CountiesComponent implements OnInit {
   }
 
   onTitleChange(event: any, item: County) {
-    const title = event.target.value;
-    this.loading = true;
-    this.countyService.sendToValidate(title).subscribe(
-      res => {
-        this.loading = false;
-        if (res.error) {
-          item.isValid = false;
-        } else item.isValid = true;
-      }
-    );
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      const title = event.target.value;
+      this.loading = true;
+      this.countyService.sendToValidate(title).subscribe(
+        res => {
+          this.loading = false;
+          if (res.error) {
+            item.isValid = false;
+          } else item.isValid = true;
+        }
+      );
+    }, 600);
+  }
+
+  editCounty(county: County) {
+    if (county.isValid) {
+      const Id = county._id;
+      const title = county.title;
+      this.loading = true;
+      this.countyService.updateCounty(Id, title).subscribe(
+        () => {
+          this.getCounties();
+        }
+      )
+    }
   }
 }

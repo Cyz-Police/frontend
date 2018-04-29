@@ -15,6 +15,7 @@ export class CountyService {
 
   private getAllUrl = `${this.mainUrl}/getAll`;
   private validationUrl = `${this.mainUrl}/validate`;
+  private updateUrl = `${this.mainUrl}/update`;
 
   constructor(private http: Http) { }
 
@@ -24,6 +25,10 @@ export class CountyService {
 
   sendToValidate(title) {
     return this.http.post(this.validationUrl, { title }).map(this.extractData).catch(this.handleError);
+  }
+
+  updateCounty(Id, title) {
+    return this.http.post(this.updateUrl, { Id, title }).map(this.extractData).catch(this.handleError);
   }
  
   private extractData(res: Response) {
@@ -42,5 +47,4 @@ export class CountyService {
     }
     return Observable.throw(errMsg);
   };
-
 }

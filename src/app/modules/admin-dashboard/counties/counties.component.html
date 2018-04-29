@@ -1,18 +1,38 @@
 <div class="content">
-  <h2 class="title">{{ title }}</h2>
+  <h2 class="title">Apskritys</h2>
   <app-common-searchbar (passSearch)="onSearch($event)"></app-common-searchbar>
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col col-5">
+        <input class="input-new" placeholder="Apskrities pavadinimas" />
+      </div>
+      <div class="col col-2">
+        <input class="input-new" type="number" placeholder="ID kodas"/>
+      </div>
+      <div class="col col-1">
+        <span><i class="material-icons valid">done</i></span>
+        <span><i class="material-icons invalid">clear</i></span>
+      </div>
+      <div class="col col-4">
+        <button class="btn activated">Prideti apskriti</button>
+      </div>
+    </div>
+  </div>
   <app-loader [loading]="loading"></app-loader>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let county of counties | filter: searchValue">
       <div class="cotainer-fluid">
         <div class="row">
           <div class="col col-xs-9 input-text">
-            <input value="{{ county.title }}" class="edit" (keyup)="onTitleChange($event, county)"/>
+            <input [value]="county.title" (input)="county.title = $event.target.value" class="edit" (keyup)="onTitleChange($event, county)"/>
             <span *ngIf="county.isValid"><i class="material-icons valid">done</i></span>
             <span *ngIf="county.isValid == false"><i class="material-icons invalid">clear</i></span>
           </div>
           <div class="col col-xs-3 text-center">
-            <button class="btn activated float-right" [ngClass]="{'disabled': !county.isValid}">Redaguoti</button>
+            <button
+            class="btn activated float-right"
+            [ngClass]="{'disabled': !county.isValid}"
+            (click)="editCounty(county)">Redaguoti</button>
           </div>
         </div>
       </div>
