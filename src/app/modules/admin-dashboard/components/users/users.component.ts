@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserServicesService } from './../services/user-services.service';
-import { CountyService } from './../services/county.service';
+import { UserServicesService } from './../../services/user-services.service';
+import { CountyService } from './../../services/county.service';
 import { ToastComponent } from './../toast/toast.component';
-import { User } from './../interfaces/user';
-import { County } from './../interfaces/county';
+import { User } from './../../interfaces/user';
+import { County } from './../../interfaces/county';
 
 @Component({
   selector: 'app-users',

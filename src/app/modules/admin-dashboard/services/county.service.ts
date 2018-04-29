@@ -14,7 +14,9 @@ export class CountyService {
   private mainUrl = `${Constants.host}/county`;
 
   private getAllUrl = `${this.mainUrl}/getAll`;
-  private validationUrl = `${this.mainUrl}/validate`;
+  private postNewUrl = `${this.mainUrl}/create`;
+  private titleValidationUrl = `${this.mainUrl}/validateTitle`;
+  private idValidationUrl = `${this.mainUrl}/validateId`;
   private updateUrl = `${this.mainUrl}/update`;
 
   constructor(private http: Http) { }
@@ -23,12 +25,20 @@ export class CountyService {
     return this.http.get(this.getAllUrl).map(this.extractData).catch(this.handleError);
   }
 
-  sendToValidate(title) {
-    return this.http.post(this.validationUrl, { title }).map(this.extractData).catch(this.handleError);
+  sendToValidateTitle(title) {
+    return this.http.post(this.titleValidationUrl, { title }).map(this.extractData).catch(this.handleError);
+  }
+  
+  sendToValidateId(id) {
+    return this.http.post(this.idValidationUrl, { id }).map(this.extractData).catch(this.handleError);
   }
 
   updateCounty(Id, title) {
     return this.http.post(this.updateUrl, { Id, title }).map(this.extractData).catch(this.handleError);
+  }
+
+  addNewCounty(title, assignedId) {
+    return this.http.post(this.postNewUrl, { title, assignedId }).map(this.extractData).catch(this.handleError);
   }
  
   private extractData(res: Response) {

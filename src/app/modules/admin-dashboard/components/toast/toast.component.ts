@@ -6,12 +6,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./toast.component.css']
 })
 export class ToastComponent implements OnInit {
-  @Input() private message;
+  @Input() message: string;
 
   constructor() { }
 
   ngOnInit() {
-    console.log('Perduotas pranesimas: ', this.message);
   }
 
 }
