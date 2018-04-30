@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../../services/category.service';
+import { Category } from '../../interfaces/category';
 
 @Component({
   selector: 'app-categories',
@@ -8,16 +10,29 @@ import { Component, OnInit } from '@angular/core';
 export class CategoriesComponent implements OnInit {
   private title = 'Kategorijos';
   private searchValue;
+  private categories: Category[];
+  
+  constructor(
+    private categoryService: CategoryService
+  ) {}
 
-  private categories = ['Telefonai', 'Dviraciai', 'Kompiuteriai'];
+  ngOnInit() {
+    this.getCategories();
+  }
+
+  getCategories() {
+    this.categoryService.getAllCategories().subscribe(
+      categories => {
+        this.categories = categories;
+        console.log(categories);
+      }, err => {
+        console.log(err);
+      }
+    );
+  }
 
   onSearch(message:string):void {
     this.searchValue = message;
-  }
-
-  constructor() { }
-
-  ngOnInit() {
   }
 
 }

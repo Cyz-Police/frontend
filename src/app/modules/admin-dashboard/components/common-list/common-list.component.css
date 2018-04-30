@@ -18,6 +18,7 @@ button:active {
 }
 
 .edit {
+	text-transform: capitalize;
 	padding: 0 1rem!important;
 	overflow: scroll;
 	border: 0;

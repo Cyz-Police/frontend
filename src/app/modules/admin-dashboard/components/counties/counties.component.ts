@@ -11,18 +11,17 @@ import { ToastComponent } from './../toast/toast.component';
   styleUrls: ['./counties.component.css']
 })
 
-
 export class CountiesComponent implements OnInit {
   private searchValue;
   private loading: boolean = false;
+  private message: string;
+  private timeout;
   private formIsValid: boolean;
   private newCounty: County;
   private counties: County[];
-  private message: string;
-  private timeout;
 
   constructor(
-    private countyService: CountyService,
+    private countyService: CountyService
   ) {}
 
   ngOnInit() {
@@ -46,8 +45,7 @@ export class CountiesComponent implements OnInit {
         this.counties = counties;
         this.loading = false;
       },
-      err => {
-      }
+      err => this.handleError()
     );
   }
 
@@ -67,7 +65,7 @@ export class CountiesComponent implements OnInit {
             item.isValid = false;
             this.showToast('Netinkamas apskrities pavadinimas')
           } else item.isValid = true;
-        }
+        }, err => this.handleError()
       );
     }, 600);
   }
@@ -88,7 +86,7 @@ export class CountiesComponent implements OnInit {
             countyForm.form.controls['countyTitle'].setErrors({'incorrect': true});
             this.showToast('Netinkamas apskrities pavadinimas');
           } else countyForm.form.controls['countyTitle'].setErrors(null);
-        }
+        }, err => this.handleError()
       );
     }, 600);
   }
@@ -110,7 +108,7 @@ export class CountiesComponent implements OnInit {
             countyForm.form.controls['countyId'].setErrors({'incorrect': true});
             this.showToast('Netinkamas apskrities ID');
           } else countyForm.form.controls['countyId'].setErrors(null);
-        }
+        }, err => this.handleError()
       );
     }, 600);
   }
@@ -124,21 +122,9 @@ export class CountiesComponent implements OnInit {
         () => {
           this.getCounties();
           this.showToast('Apskritis redaguota')
-        }, err => {
-          this.loading = false;
-          this.showToast('Išsaugoti nepavyko')
-        }
+        }, err => this.handleError()
       )
     }
-  }
-
-  showToast(message: string) {
-    this.message = message;
-    console.log(this.message);
-    setTimeout(() => { 
-      this.message = undefined;
-        console.log(this.message);
-    }, 2800);
   }
 
   onFormSubmit(form: any) {
@@ -150,10 +136,21 @@ export class CountiesComponent implements OnInit {
       () => {
         this.getCounties();
         this.showToast('Apskritis prideta');
-      }, err => {
-        this.loading = false;
-        this.showToast('Nepavyko prideti apskrities');
-      }
+      }, err => this.handleError()
     );
+  }
+  
+  showToast(message: string) {
+    this.message = message;
+    console.log(this.message);
+    setTimeout(() => { 
+      this.message = undefined;
+        console.log(this.message);
+    }, 2800);
+  }
+
+  handleError() {
+    this.loading = false;
+    this.showToast('Serverio klaida');
   }
 }

@@ -21,6 +21,8 @@ import { UserServicesService } from './services/user-services.service';
 import { CountyService } from './services/county.service';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { CategoryService } from './services/category.service';
+import { ToastService } from './services/toast.service';
 
 @NgModule({
   imports: [
@@ -32,7 +34,9 @@ import { ToastComponent } from './components/toast/toast.component';
   declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountiesComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonListComponent, CommonSearchbarComponent, CommonFilterPipe, UsersFilterPipe, CountyFilterPipe, LoaderComponent, ToastComponent],
   providers: [
     UserServicesService,
-    CountyService
+    CountyService,
+    CategoryService,
+    ToastService
   ]
 })
 export class AdminDashboardModule { }

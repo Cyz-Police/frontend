@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserServicesService } from './../../services/user-services.service';
 import { CountyService } from './../../services/county.service';
 import { ToastComponent } from './../toast/toast.component';
+import { ToastService } from '../../services/toast.service';
 import { User } from './../../interfaces/user';
 import { County } from './../../interfaces/county';
 
@@ -27,7 +28,8 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userServivces: UserServicesService,
-    private countyService: CountyService
+    private countyService: CountyService,
+    private toastService: ToastService
   ) { }
 
   ngOnInit() {

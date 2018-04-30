@@ -96,3 +96,8 @@ i.invalid {
 i.form-validation {
 	line-height: 37px;
 }
+
+i.county-list,
+span.countyId {
+	line-height: 38px;
+}

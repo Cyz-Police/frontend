@@ -5,17 +5,36 @@
     <form #countyForm="ngForm" (ngSubmit)="onFormSubmit(countyForm)">
       <div class="row justify-content-end">
         <div class="col col-6">
-          <input class="input-new" type="text" required (keyup)="onFormTitleInput($event, countyForm)" [(ngModel)]="newCounty.title" name="countyTitle" #countyTitle="ngModel" placeholder="Apskrities pavadinimas" />
+          <input
+            class="input-new"
+            type="text" required
+            (keyup)="onFormTitleInput($event, countyForm)"
+            [(ngModel)]="newCounty.title" name="countyTitle"
+            #countyTitle="ngModel"
+            placeholder="Apskrities pavadinimas" />
         </div>
         <div class="col col-2">
-          <input class="input-new" type="text" maxlength="2" required (keyup)="onFormIdInput($event, countyForm)" [(ngModel)]="newCounty.assignedId" name="countyId" #countyId="ngModel" placeholder="ID kodas"/>
+          <input
+            class="input-new"
+            type="text" maxlength="2"
+            required (keyup)="onFormIdInput($event, countyForm)"
+            [(ngModel)]="newCounty.assignedId"
+            name="countyId"
+            #countyId="ngModel"
+            placeholder="ID kodas"/>
         </div>
         <div class="col col-1">
           <span *ngIf="countyForm.valid"><i class="material-icons valid form-validation">done</i></span>
-          <span *ngIf="countyForm.invalid && countyForm.touched"><i class="material-icons invalid form-validation">clear</i></span>
+          <span
+            *ngIf="countyForm.invalid && countyForm.touched">
+            <i class="material-icons invalid form-validation">clear</i>
+          </span>
         </div>
         <div class="col col-3">
-          <button class="btn activated" [ngClass]="{'disabled': !countyForm.form.valid}" [disabled]="!countyForm.form.valid" type="submit">Pridėti apskritį</button>
+          <button class="btn activated"
+            [disabled]="!countyForm.form.valid"
+            type="submit">Pridėti apskritį
+          </button>
         </div>
       </div>
     </form>
@@ -25,16 +44,26 @@
     <li class="list-group-item" *ngFor="let county of counties | filter: searchValue">
       <div class="cotainer-fluid">
         <div class="row">
-          <div class="col col-xs-9 input-text">
-            <input [value]="county.title" (input)="county.title = $event.target.value" class="edit" (keyup)="onTitleChange($event, county)"/>
+          <div class="col col-xs-7 input-text">
+            <input
+              [value]="county.title"
+              (input)="county.title = $event.target.value"
+              class="edit"
+              (keyup)="onTitleChange($event, county)"/>
+          </div>
+          <div class="col col-xs-1">
             <span class="countyId">{{county.assignedId}}</span>
-            <span *ngIf="county.isValid"><i class="material-icons valid">done</i></span>
-            <span *ngIf="county.isValid == false"><i class="material-icons invalid">clear</i></span>
+          </div>
+          <div class="col col-xs-1">
+            <span *ngIf="county.isValid"><i class="material-icons valid county-list">done</i></span>
+            <span *ngIf="county.isValid == false">
+              <i class="material-icons invalid county-list">clear</i>
+            </span>
           </div>
           <div class="col col-xs-3 text-center">
             <button
               class="btn activated float-right"
-              [ngClass]="{'disabled': !county.isValid}"
+              [disabled]="!county.isValid"
               (click)="editCounty(county)">Redaguoti
             </button>
           </div>
@@ -42,5 +71,5 @@
       </div>
     </li>
   </ul>
-  <app-toast [message]="message"></app-toast>
 </div>
+<app-toast [message]="message"></app-toast>
