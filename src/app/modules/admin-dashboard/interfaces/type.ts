@@ -1,5 +1,6 @@
 export interface Type {
-	id: string,
+	_id: string,
 	title: string,
 	category: string,
+	isValid: boolean,
 }

@@ -33,8 +33,8 @@ export class CountyService {
     return this.http.post(this.idValidationUrl, { id }).map(this.extractData).catch(this.handleError);
   }
 
-  updateCounty(Id, title) {
-    return this.http.post(this.updateUrl, { Id, title }).map(this.extractData).catch(this.handleError);
+  updateCounty(id, title) {
+    return this.http.post(this.updateUrl, { id, title }).map(this.extractData).catch(this.handleError);
   }
 
   addNewCounty(title, assignedId) {

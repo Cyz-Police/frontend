@@ -1,6 +1,62 @@
 <div class="content">
-  <h2 class="title">{{ title }}</h2>
+  <h2 class="title">Kategorijos</h2>
   <app-common-searchbar (passSearch)="onSearch($event)"></app-common-searchbar>
-  <app-common-list [values]="categories" [searchValue]="searchValue" ></app-common-list>
+  <div class="container new-input">
+    <form #categoryForm="ngForm" (ngSubmit)="onFormSubmit(categoryForm)">
+      <div class="row justify-content-end">
+        <div class="col col-8">
+          <input
+            class="input-new"
+            type="text" required
+            (keyup)="onFormTitleInput($event, categoryForm)"
+            [(ngModel)]="newCategory.title" name="categoryTitle"
+            #categoryTitle="ngModel"
+            placeholder="Kategorijos pavadinimas" />
+        </div>
+        <div class="col col-1">
+          <span *ngIf="categoryForm.valid"><i class="material-icons valid form-validation">done</i></span>
+          <span
+            *ngIf="categoryForm.invalid && (categoryTitle.touched || categoryTitle.dirty)">
+            <i class="material-icons invalid form-validation">clear</i>
+          </span>
+        </div>
+        <div class="col col-3">
+          <button class="btn activated"
+            [disabled]="!categoryForm.form.valid"
+            type="submit">Pridėti kategoriją
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <app-loader [loading]="loading"></app-loader>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let category of categories | filter: searchValue">
+      <div class="cotainer-fluid">
+        <div class="row">
+          <div class="col col-xs-8 input-text">
+            <input
+              [value]="category.title"
+              (input)="category.title = $event.target.value"
+              class="edit"
+              (keyup)="onTitleChange($event, category)"/>
+          </div>
+          <div class="col col-xs-1">
+            <span *ngIf="category.isValid"><i class="material-icons valid county-list">done</i></span>
+            <span *ngIf="category.isValid == false">
+              <i class="material-icons invalid county-list">clear</i>
+            </span>
+          </div>
+          <div class="col col-xs-3 text-center">
+            <button
+              class="btn activated float-right"
+              [disabled]="!category.isValid"
+              (click)="editCategory(category)">Redaguoti
+            </button>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>
-
+<app-toast [message]="toast"></app-toast>

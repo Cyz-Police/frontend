@@ -52,7 +52,7 @@ export class CountiesComponent implements OnInit {
   onTitleChange(event: any, item: County) {
     const title = event.target.value;
     if (title.length < 1) {
-      this.formIsValid = false;
+      item.isValid = false;
       return;
     }
     clearTimeout(this.timeout);

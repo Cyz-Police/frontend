@@ -1,5 +1,68 @@
 <div class="content">
-  <h2 class="title">{{ title }}</h2>
+  <h2 class="title">Tipai</h2>
   <app-common-searchbar></app-common-searchbar>
-  <app-common-list [values]="types" ></app-common-list>
+  <app-loader [loading]="loading"></app-loader>
+  <div class="container new-input">
+    <form #typeForm="ngForm" (ngSubmit)="onFormSubmit(typeForm)">
+      <div class="row justify-content-end">
+        <div class="col col-4">
+          <input
+            class="input-new"
+            type="text" required
+            (keyup)="onFormTitleInput($event, typeForm)"
+            [(ngModel)]="newType.title" name="categoryTitle"
+            #typeTitle="ngModel"
+            placeholder="Tipo pavadinimas" />
+        </div>
+        <div class="col col-4">
+          <select>
+            <option default value="">------</option>
+            <option *ngFor="let category of categories" value="{{ category.id }}">{{category.title}}</option>
+          </select>
+        </div>
+        <div class="col col-1">
+          <span *ngIf="typeForm.valid"><i class="material-icons valid form-validation">done</i></span>
+          <span
+            *ngIf="typeForm.invalid && (typeTitle.touched || typeTitle.dirty)">
+            <i class="material-icons invalid form-validation">clear</i>
+          </span>
+        </div>
+        <div class="col col-3">
+          <button class="btn activated"
+            [disabled]="!typeForm.form.valid"
+            type="submit">Pridėti tipą
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let type of types | filter: searchValue">
+      <div class="cotainer-fluid">
+        <div class="row">
+          <div class="col col-xs-8 input-text">
+            <input
+              [value]="type.title"
+              (input)="type.title = $event.target.value"
+              class="edit"
+              (keyup)="onTitleChange($event, type)"/>
+          </div>
+          <div class="col col-xs-1">
+            <span *ngIf="type.isValid"><i class="material-icons valid county-list">done</i></span>
+            <span *ngIf="type.isValid == false">
+              <i class="material-icons invalid county-list">clear</i>
+            </span>
+          </div>
+          <div class="col col-xs-3 text-center">
+            <button
+              class="btn activated float-right"
+              [disabled]="!type.isValid"
+              (click)="editType(type)">Redaguoti
+            </button>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>
+<app-toast [message]="toast"></app-toast>
