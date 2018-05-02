@@ -10,6 +10,7 @@ import { TypesComponent } from './components/types/types.component';
 const routes: Routes = [
   { path: '', component: AdminDashboardComponent,
     children: [
+      { path: '', redirectTo: 'users', pathMatch: 'full'},
       { path: 'countys', component: CountiesComponent },
       { path: 'users', component: UsersComponent },
       { path: 'categories', component: CategoriesComponent },

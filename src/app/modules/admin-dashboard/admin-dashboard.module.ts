@@ -12,7 +12,6 @@ import { CountiesComponent } from './components/counties/counties.component';
 import { UsersComponent } from './components/users/users.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { TypesComponent } from './components/types/types.component';
-import { CommonListComponent } from './components/common-list/common-list.component';
 import { CommonSearchbarComponent } from './components/common-searchbar/common-searchbar.component';
 import { CommonFilterPipe } from './pipes/common-filer.pipe';
 import { UsersFilterPipe } from './pipes/users-filter.pipe';
@@ -31,7 +30,7 @@ import { TypeService } from './services/type.service';
     AdminDashboardRoutingModule,
     FormsModule,
   ],
-  declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountiesComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonListComponent, CommonSearchbarComponent, CommonFilterPipe, UsersFilterPipe, CountyFilterPipe, LoaderComponent, ToastComponent],
+  declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountiesComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonSearchbarComponent, CommonFilterPipe, UsersFilterPipe, CountyFilterPipe, LoaderComponent, ToastComponent],
   providers: [
     UserServicesService,
     CountyService,
