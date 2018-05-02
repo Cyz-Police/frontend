@@ -33,8 +33,8 @@ export class TypeService {
     return this.http.post(this.updateUrl, { id, title }).map(this.extractData).catch(this.handleError);
   }
 
-addNewType(title, categoryId) {
-    return this.http.post(this.postNewUrl, { title, categoryId }).map(this.extractData).catch(this.handleError);
+  addNewType(title, category) {
+    return this.http.post(this.postNewUrl, { title, category }).map(this.extractData).catch(this.handleError);
   }
  
   private extractData(res: Response) {

@@ -61,7 +61,6 @@ export class TypesComponent implements OnInit {
     this.searchValue = message;
   }
 
-
   onTitleChange(event: any, item: Type) {
     const title = event.target.value;
     if (title.length < 1) {
@@ -106,7 +105,7 @@ export class TypesComponent implements OnInit {
 
   onFormSubmit(form: any) {
     const title = form.value.typeTitle;
-    const categoryId = form.value.typeCategory;
+    const categoryId = form.value.categoryTitle;
     form.reset();
     this.loading = true;
     this.typeService.addNewType(title, categoryId).subscribe(

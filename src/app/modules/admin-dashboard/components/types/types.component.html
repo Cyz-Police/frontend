@@ -1,6 +1,6 @@
 <div class="content">
   <h2 class="title">Tipai</h2>
-  <app-common-searchbar></app-common-searchbar>
+  <app-common-searchbar (passSearch)="onSearch($event)"></app-common-searchbar>
   <div class="container new-input">
     <form #typeForm="ngForm" (ngSubmit)="onFormSubmit(typeForm)">
       <div class="row justify-content-end">
@@ -9,14 +9,14 @@
             class="input-new"
             type="text" required
             (keyup)="onFormTitleInput($event, typeForm)"
-            [(ngModel)]="newType.title" name="categoryTitle"
+            [(ngModel)]="newType.title" name="typeTitle"
             #typeTitle="ngModel"
             placeholder="Tipo pavadinimas" />
         </div>
         <div class="col col-4">
-          <select class="category-select">
+          <select class="category-select" [(ngModel)]="newType.category" name="categoryTitle" #categoryTitle="ngModel">
             <option default value="">-------</option>
-            <option *ngFor="let category of categories" value="{{ category.id }}">{{category.title}}</option>
+            <option *ngFor="let category of categories" [value]="category._id">{{category.title}}</option>
           </select>
         </div>
         <div class="col col-1">
