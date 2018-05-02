@@ -104,3 +104,22 @@ span.countyId {
 	line-height: 38px;
 }
 
+.category-select {
+	text-transform: capitalize;
+  height: 2.5rem;
+  background-color: white;
+  width: 100%;
+  padding: 0 1rem;
+  border-radius: 10px;
+  box-shadow: none;
+  border: 1px solid rgba(0,0,0,.125);
+}
+
+.category-select:focus,
+.category-select:active {
+	outline: none;
+}
+
+form {
+	margin-bottom: .4rem;
+}

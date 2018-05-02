@@ -1,7 +1,6 @@
 <div class="content">
   <h2 class="title">Tipai</h2>
   <app-common-searchbar></app-common-searchbar>
-  <app-loader [loading]="loading"></app-loader>
   <div class="container new-input">
     <form #typeForm="ngForm" (ngSubmit)="onFormSubmit(typeForm)">
       <div class="row justify-content-end">
@@ -15,8 +14,8 @@
             placeholder="Tipo pavadinimas" />
         </div>
         <div class="col col-4">
-          <select>
-            <option default value="">------</option>
+          <select class="category-select">
+            <option default value="">-------</option>
             <option *ngFor="let category of categories" value="{{ category.id }}">{{category.title}}</option>
           </select>
         </div>
@@ -36,6 +35,7 @@
       </div>
     </form>
   </div>
+  <app-loader [loading]="loading"></app-loader>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let type of types | filter: searchValue">
       <div class="cotainer-fluid">

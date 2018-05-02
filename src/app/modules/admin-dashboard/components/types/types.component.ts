@@ -125,7 +125,7 @@ export class TypesComponent implements OnInit {
       this.typeService.updateType(id, title).subscribe(
         res => {
           this.getTypes();
-          this.showToast('Kategorija redaguota')
+          this.showToast('Tipas redaguotas');
         }, err => this.handleError()
       )
     }
@@ -142,5 +142,4 @@ export class TypesComponent implements OnInit {
     this.loading = false;
     this.toast = "Serverio klaida";
   }
-
 }
