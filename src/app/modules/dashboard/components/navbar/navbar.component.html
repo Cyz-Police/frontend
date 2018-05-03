@@ -1,0 +1,63 @@
+<nav class="col-md-2 d-none d-md-block sidebar">
+  <div class="sidebar-sticky">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard/users']">
+          <i class="material-icons">supervisor_account</i>
+          Naudotojai
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard/search']">
+          <i class="material-icons">search</i>
+          Paieška
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard/list']">
+          <i class="material-icons">library_books</i>
+          Sąrašas
+        </a>
+      </li>
+      <li class="nav-item logout">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/authentication']">
+				  <i class="material-icons">power_settings_new</i>
+          Atsijungti
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="navbar fixed-top sidebar-mobile">
+  <div class="container">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard/countys']">
+          <i class="material-icons">business</i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard/users']">
+          <i class="material-icons">supervisor_account</i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard/categories']">
+          <i class="material-icons">view_list</i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard/types']">
+          <i class="material-icons">settings</i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/authentication']">
+          <i class="material-icons">power_settings_new</i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+  
