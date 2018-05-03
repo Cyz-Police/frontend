@@ -25,7 +25,7 @@ input {
 	font-size: 1.2rem;
 }
 
-button {
+button.submit {
 	font-weight: 600;
 	background-color: #eb008d;
 	padding: 0.5rem 2rem;
@@ -33,15 +33,29 @@ button {
 	border: 0;
 }
 
-button:hover,
-button:active {
+button.submit:hover,
+button.submit:active {
 	background-color: #eb008d!important;
 	border: 0;
 	outline: 0!important;
+}
+
+button.disabled {
+	background-color: black;
 }
 
 .form-control:focus {
 	border-color: #0d9bde;
 	box-shadow: none;
 	outline: 0 none;
+}
+
+.counties-select {
+	font-size: 1.2rem;
+	text-transform: capitalize;
+}
+
+.danger,
+.danger:focus {
+	border: 1px solid red;
 }

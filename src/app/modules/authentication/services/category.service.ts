@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Category } from '../interfaces/category';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response } from '@angular/http';
-import Constants from '../../../../config/constants';
+import Constants from '../../../config/constants';
 
 @Injectable()
 export class CategoryService {

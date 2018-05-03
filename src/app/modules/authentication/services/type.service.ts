@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Type } from '../interfaces/type';
 import { Http, Response } from '@angular/http';
 import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -7,21 +8,20 @@ import { Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
-import Constants from '../../../../config/constants';
+import Constants from '../../../config/constants';
 
 @Injectable()
-export class CountyService {
-  private mainUrl = `${Constants.host}/county`;
+export class TypeService {
+  private mainUrl = `${Constants.host}/type`;
 
   private getAllUrl = `${this.mainUrl}/getAll`;
   private postNewUrl = `${this.mainUrl}/create`;
   private titleValidationUrl = `${this.mainUrl}/validateTitle`;
-  private idValidationUrl = `${this.mainUrl}/validateId`;
   private updateUrl = `${this.mainUrl}/update`;
 
   constructor(private http: Http) { }
-
-  getAllCounties(): Observable<County[]> {
+  
+  getAllTypes(): Observable<Type[]> {
     return this.http.get(this.getAllUrl).map(this.extractData).catch(this.handleError);
   }
 
@@ -29,16 +29,12 @@ export class CountyService {
     return this.http.post(this.titleValidationUrl, { title }).map(this.extractData).catch(this.handleError);
   }
   
-  sendToValidateId(id) {
-    return this.http.post(this.idValidationUrl, { id }).map(this.extractData).catch(this.handleError);
-  }
-
-  updateCounty(id, title) {
+  updateType(id, title) {
     return this.http.post(this.updateUrl, { id, title }).map(this.extractData).catch(this.handleError);
   }
 
-  addNewCounty(title, assignedId) {
-    return this.http.post(this.postNewUrl, { title, assignedId }).map(this.extractData).catch(this.handleError);
+  addNewType(title, category) {
+    return this.http.post(this.postNewUrl, { title, category }).map(this.extractData).catch(this.handleError);
   }
  
   private extractData(res: Response) {
@@ -57,4 +53,5 @@ export class CountyService {
     }
     return Observable.throw(errMsg);
   };
+
 }

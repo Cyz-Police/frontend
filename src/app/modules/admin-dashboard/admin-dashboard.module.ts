@@ -16,7 +16,7 @@ import { CommonSearchbarComponent } from './components/common-searchbar/common-s
 import { CommonFilterPipe } from './pipes/common-filer.pipe';
 import { UsersFilterPipe } from './pipes/users-filter.pipe';
 import { CountyFilterPipe } from './pipes/counties-filter.pipe';
-import { UserServicesService } from './services/user-services.service';
+import { UserService } from './services/user.service';
 import { CountyService } from './services/county.service';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ToastComponent } from './components/toast/toast.component';
@@ -32,7 +32,7 @@ import { TypeService } from './services/type.service';
   ],
   declarations: [HeaderComponent, NavbarComponent, AdminDashboardComponent, CountiesComponent, UsersComponent, CategoriesComponent, TypesComponent, CommonSearchbarComponent, CommonFilterPipe, UsersFilterPipe, CountyFilterPipe, LoaderComponent, ToastComponent],
   providers: [
-    UserServicesService,
+    UserService,
     CountyService,
     CategoryService,
     TypeService

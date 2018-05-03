@@ -1,42 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Type } from '../interfaces/type';
 import { Http, Response } from '@angular/http';
 import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { County } from '../interfaces/county';
+import { User } from '../interfaces/user';
 import { Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
-import Constants from '../../../../config/constants';
+import Constants from '../../../config/constants';
 
 @Injectable()
-export class TypeService {
-  private mainUrl = `${Constants.host}/type`;
+export class UserService {
+  private mainUrl = `${Constants.host}/user`;
 
   private getAllUrl = `${this.mainUrl}/getAll`;
-  private postNewUrl = `${this.mainUrl}/create`;
-  private titleValidationUrl = `${this.mainUrl}/validateTitle`;
-  private updateUrl = `${this.mainUrl}/update`;
+  private roleChangeUrl = `${this.mainUrl}/changeRole`;
+  private deactivationUrl = `${this.mainUrl}/deactivate`;
+  private activationUrl = `${this.mainUrl}/activate`;
 
   constructor(private http: Http) { }
-  
-  getAllTypes(): Observable<Type[]> {
+
+  getAllUsers(): Observable<User[]> {
     return this.http.get(this.getAllUrl).map(this.extractData).catch(this.handleError);
   }
 
-  sendToValidateTitle(title) {
-    return this.http.post(this.titleValidationUrl, { title }).map(this.extractData).catch(this.handleError);
-  }
-  
-  updateType(id, title) {
-    return this.http.post(this.updateUrl, { id, title }).map(this.extractData).catch(this.handleError);
+  deactivateUser(userId: String) {
+    return this.http.post(this.deactivationUrl, { userId }).map(this.extractData).catch(this.handleError);
   }
 
-  addNewType(title, category) {
-    return this.http.post(this.postNewUrl, { title, category }).map(this.extractData).catch(this.handleError);
+  activateUser(userId: String) {
+    return this.http.post(this.activationUrl, { userId }).map(this.extractData).catch(this.handleError);
   }
- 
+
+  changeUsersRole(userId: String, role: String) {
+    return this.http.post(this.roleChangeUrl, { userId, role }).map(this.extractData).catch(this.handleError);
+  }
+
   private extractData(res: Response) {
     let body = res.json();
     return body || {};
