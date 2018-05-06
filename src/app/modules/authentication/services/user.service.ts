@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, enableProdMode } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -14,11 +14,17 @@ export class UserService {
   private mainUrl = `${Constants.host}/user`;
 
   private validationUrl = `${this.mainUrl}/validateEmail`;
+  private registrationUrl = `${this.mainUrl}/create`;
 
   constructor(private http: Http) { }
 
   validateUserEmail(email: string) {
     return this.http.post(this.validationUrl, { email }).map(this.extractData).catch(this.handleError);
+  }
+  
+  registrateUser(user: User) {
+    const { email, fullName, county, password } = user; 
+    return this.http.post(this.registrationUrl, { email, fullName, county, passwordCandidate: password }).map(this.extractData).catch(this.handleError);
   }
 
   private extractData(res: Response) {

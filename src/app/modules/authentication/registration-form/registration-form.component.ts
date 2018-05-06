@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './../../../authentication/authentication.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { County } from './../interfaces/county';
 import { CountyService } from './../services/county.service';
 import { User } from './../interfaces/user';
@@ -14,12 +15,16 @@ import { UserService } from './../services/user.service';
 export class RegistrationFormComponent implements OnInit {
   private user: User;
   private counties: County[];
+  private success: boolean;
+  private error: boolean;
   private timeout;
+  private loading;
 
   constructor(
     private authService: AuthenticationService,
     private countyService: CountyService,
     private userService: UserService,
+    private router: Router
   ) {
     this.user = {
       fullName: '',
@@ -27,15 +32,30 @@ export class RegistrationFormComponent implements OnInit {
       county: '',
       password: '',
       rePassword: '',
-    }
+    };
   }
 
   ngOnInit() {
     this.getAllCounties();
   }
 
-  onFormSubmit(form: any) {
-    console.log(form.value);
+  onFormSubmit() {
+    this.loading = true;
+    this.userService.registrateUser(this.user).subscribe(
+      res => {
+        this.loading = false;
+        this.success = true;
+        setTimeout(() => { 
+          this.router.navigateByUrl('/authentication/login');
+        }, 2800);
+      }, err => {
+        this.loading = false;
+        this.error = true;
+        setTimeout(() => {
+          this.error = false;
+        }, 2800)
+      }
+    );
   }
 
   getAllCounties() {
@@ -65,8 +85,8 @@ export class RegistrationFormComponent implements OnInit {
     clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {
         if (rePassword !== password) {
-          registrationForm.form.controls['password'].setErrors({ 'incorrect': true });
-        } else registrationForm.form.controls['password'].setErrors(null);
+          registrationForm.form.controls['rePassword'].setErrors({ 'incorrect': true });
+        } else registrationForm.form.controls['rePassword'].setErrors(null);
       }, 800);
   }
 }

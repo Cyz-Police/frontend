@@ -12,6 +12,7 @@ import { AuthenticationComponent } from './authentication.component';
 import { AuthenticationService } from './../../authentication/authentication.service';
 import { CountyService } from './services/county.service';
 import { UserService } from './services/user.service';
+import { SuccessComponent } from './success/success.component';
 
 
 @NgModule({
@@ -22,6 +23,6 @@ import { UserService } from './services/user.service';
     HttpModule,
   ],
   providers: [AuthenticationService, CountyService, UserService],
-  declarations: [LoginFormComponent, RegistrationFormComponent, HeaderComponent, AuthenticationComponent],
+  declarations: [LoginFormComponent, RegistrationFormComponent, HeaderComponent, AuthenticationComponent, SuccessComponent],
 })
 export class AuthenticationModule { }
