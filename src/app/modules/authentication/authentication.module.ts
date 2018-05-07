@@ -12,7 +12,8 @@ import { AuthenticationComponent } from './authentication.component';
 import { AuthenticationService } from './../../authentication/authentication.service';
 import { CountyService } from './services/county.service';
 import { UserService } from './services/user.service';
-import { SuccessComponent } from './success/success.component';
+import { ErrorComponent } from './error/error.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -23,6 +24,6 @@ import { SuccessComponent } from './success/success.component';
     HttpModule,
   ],
   providers: [AuthenticationService, CountyService, UserService],
-  declarations: [LoginFormComponent, RegistrationFormComponent, HeaderComponent, AuthenticationComponent, SuccessComponent],
+  declarations: [LoginFormComponent, RegistrationFormComponent, HeaderComponent, AuthenticationComponent, ErrorComponent, LoaderComponent],
 })
 export class AuthenticationModule { }

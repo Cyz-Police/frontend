@@ -58,20 +58,3 @@ button.submit:active {
 .alert {
 	margin-top: 1.5rem;
 }
-
-.spinner {
-	position: absolute;
-	top: 35%;
-	left: 50%;
-  height: 35px;
-  width: 35px;
-  animation: rotate 0.8s infinite linear;
-	border: 5px solid #0d9bde;
-  border-right-color: transparent;
-  border-radius: 50%;
-}
-
-@keyframes rotate {
-  0%    { transform: rotate(0deg); }
-  100%  { transform: rotate(360deg); }
-}

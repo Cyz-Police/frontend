@@ -4,28 +4,28 @@
     <h2>Registruokitės</h2>
     <p><a [routerLink]="['/authentication/login']">Jau turite paskyrą?</a></p>
       <div class="form-group">
-        <input required type="text" class="form-control" placeholder="Vardas, pavardė" name="fullName" [(ngModel)]="user.fullName" #fullName="ngModel">
+        <input required type="text" class="form-control" placeholder="Vardas, pavardė" name="fullName" [(ngModel)]="newUser.fullName" #fullName="ngModel">
       </div>
       <div class="form-group">
-        <input required type="email" [ngClass]="{'is-invalid': email.errors && (email.touched || email.dirty)}" class="form-control" (keyup)="onEmailInput($event, registrationForm)" placeholder="El. pašto adresas" name="email" [(ngModel)]="user.email" #email="ngModel">
+        <input required type="email" [ngClass]="{'is-invalid': email.errors && (email.touched || email.dirty)}" class="form-control" (keyup)="onEmailInput($event, registrationForm)" placeholder="El. pašto adresas" name="email" [(ngModel)]="newUser.email" #email="ngModel">
         <div class="invalid-feedback">Netinkamas El. pašto adresas</div>
       </div>
       <div class="form-group">
-        <select required class="form-control counties-select" name="county" [(ngModel)]="user.county" #county="ngModel">
+        <select required class="form-control counties-select" name="county" [(ngModel)]="newUser.county" #county="ngModel">
           <option value="" disabled selected>Apskritis</option>
           <option *ngFor="let county of counties" [value]="county._id">{{ county.title }}</option>
         </select>
       </div>
       <div class="form-group">
-        <input required type="password" minlength="6" [ngClass]="{'is-invalid': password.errors && (password.touched || password.dirty)}" class="form-control" placeholder="Slaptažodis" name="password" [(ngModel)]="user.password" #password="ngModel">
+        <input required type="password" minlength="6" [ngClass]="{'is-invalid': password.errors && (password.touched || password.dirty)}" class="form-control" placeholder="Slaptažodis" name="password" [(ngModel)]="newUser.password" #password="ngModel">
         <div class="invalid-feedback">Slaptažodį turi sudatyti bent 6 simboliai</div>
       </div>
       <div class="form-group">
-        <input required type="password" minlength="6" [ngClass]="{'is-invalid': rePassword.errors && (rePassword.touched || rePassword.dirty)}" (keyup)="onPasswordInput($event, registrationForm)" class="form-control" placeholder="Pakartokite slaptažodį" name="rePassword" [(ngModel)]="user.rePassword" #rePassword="ngModel">
+        <input required type="password" minlength="6" [ngClass]="{'is-invalid': rePassword.errors && (rePassword.touched || rePassword.dirty)}" (keyup)="onPasswordInput($event, registrationForm)" class="form-control" placeholder="Pakartokite slaptažodį" name="rePassword" [(ngModel)]="newUser.rePassword" #rePassword="ngModel">
         <div class="invalid-feedback">Slaptažodžiai nesutampa</div>
       </div>
       <div class="form-group button">
-        <button type="submit" class="btn btn-primary submit" [ngClass]="{'disabled': !registrationForm.valid}" [disabled]="!registrationForm.valid">Pirmyn</button>
+        <button type="submit" class="btn btn-primary submit" [disabled]="!registrationForm.valid">Pirmyn</button>
       </div>
     </form>
   </div>
@@ -38,4 +38,4 @@
     </div>
   </div>
 </div>
-<div class="spinner" *ngIf="loading"></div>
+<app-loader [loading]="loading"></app-loader>

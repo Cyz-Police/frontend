@@ -13,7 +13,7 @@ import { UserService } from './../services/user.service';
   styleUrls: ['./registration-form.component.css']
 })
 export class RegistrationFormComponent implements OnInit {
-  private user: User;
+  private newUser: User;
   private counties: County[];
   private success: boolean;
   private error: boolean;
@@ -26,7 +26,7 @@ export class RegistrationFormComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ) {
-    this.user = {
+    this.newUser = {
       fullName: '',
       email: '',
       county: '',
@@ -39,9 +39,10 @@ export class RegistrationFormComponent implements OnInit {
     this.getAllCounties();
   }
 
-  onFormSubmit() {
+  onFormSubmit(form: any) {
+    const { email, fullName, county, password } = form.value;
     this.loading = true;
-    this.userService.registrateUser(this.user).subscribe(
+    this.authService.registerUser(email, fullName, county, password).subscribe(
       res => {
         this.loading = false;
         this.success = true;
@@ -61,7 +62,7 @@ export class RegistrationFormComponent implements OnInit {
   getAllCounties() {
     this.countyService.getAllCounties().subscribe(
       counties => this.counties = counties,
-      err => alert('Serverio klaida')
+      err => this.router.navigateByUrl('/authentication/404')
     );
   }
 
