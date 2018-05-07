@@ -6,6 +6,7 @@ import { County } from './../interfaces/county';
 import { CountyService } from './../services/county.service';
 import { User } from './../interfaces/user';
 import { UserService } from './../services/user.service';
+import { LoaderComponent } from './../../dashboard/components/loader/loader.component';
 
 @Component({
   selector: 'app-registration-form',
