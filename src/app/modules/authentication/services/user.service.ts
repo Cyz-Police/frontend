@@ -1,30 +1,29 @@
-import { Injectable, enableProdMode } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { HttpModule } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { User } from '../interfaces/user';
-import { Headers, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/first';
+import { Injectable } from '@angular/core';
 import Constants from '../../../config/constants';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class UserService {
   private mainUrl = `${Constants.host}/user`;
-
-  private validationUrl = `${this.mainUrl}/validateEmail`;
   private registrationUrl = `${this.mainUrl}/create`;
+  private validationUrl = `${this.mainUrl}/validateEmail`;
+  private authenticationUrl = `${this.mainUrl}/authenticate`;
+
 
   constructor(private http: Http) { }
 
-  validateUserEmail(email: string) {
-    return this.http.post(this.validationUrl, { email }).map(this.extractData).catch(this.handleError);
+  registerUser(user) {
+    return this.http.post(this.registrationUrl, { user }).map(this.extractData).catch(this.handleError);
   }
-  
-  registrateUser(user: User) {
-    const { email, fullName, county, password } = user; 
-    return this.http.post(this.registrationUrl, { email, fullName, county, passwordCandidate: password }).map(this.extractData).catch(this.handleError);
+
+  loginUser(user) {
+    return this.http.post(this.authenticationUrl, { user }).map(this.extractData).catch(this.handleError);
+  }
+
+  validateEmail(email: string) {
+    return this.http.post(this.validationUrl, { email }).map(this.extractData).catch(this.handleError);
   }
 
   private extractData(res: Response) {
@@ -43,5 +42,5 @@ export class UserService {
     }
     return Observable.throw(errMsg);
   };
-
 }
+

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from './../../../authentication/authentication.service';
 import { LoaderComponent } from './../../dashboard/components/loader/loader.component';
 import { Router } from '@angular/router';
+import { UserService } from './../services/user.service';
+import { AuthenticationService } from './../../../authentication/authentication.service';
 
 @Component({
   selector: 'app-login-form',
@@ -19,6 +20,7 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
+    private userService: UserService,
     private router: Router
   ) { }
 
@@ -27,10 +29,11 @@ export class LoginFormComponent implements OnInit {
 
   onFormSubmit() {
     this.loading = true;
-    const { email, password } = this.user;
-    this.authService.loginUser(email, password).subscribe(
+    this.userService.loginUser(this.user).subscribe(
       res => {
-        const { role } = res;
+        const { token } = res;
+        this.authService.setToken(token);
+        const { role } = this.authService.getUser(); 
         if (role === '[USER]') {
           this.error = true;
           setTimeout(() => {
@@ -45,7 +48,7 @@ export class LoginFormComponent implements OnInit {
         } else if (role === '[SUPERADMIN]') {
           this.success = true;
           setTimeout(() => {
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/admin/dashboard');
           }, 1500)
         }
       },

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from './../../../authentication/authentication.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { County } from './../interfaces/county';
@@ -22,7 +21,6 @@ export class RegistrationFormComponent implements OnInit {
   private loading;
 
   constructor(
-    private authService: AuthenticationService,
     private countyService: CountyService,
     private userService: UserService,
     private router: Router
@@ -41,9 +39,8 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   onFormSubmit(form: any) {
-    const { email, fullName, county, password } = form.value;
     this.loading = true;
-    this.authService.registerUser(email, fullName, county, password).subscribe(
+    this.userService.registerUser(this.newUser).subscribe(
       res => {
         this.loading = false;
         this.success = true;
@@ -71,7 +68,7 @@ export class RegistrationFormComponent implements OnInit {
     const email = event.target.value;
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      this.userService.validateUserEmail(email).subscribe(
+      this.userService.validateEmail(email).subscribe(
         res => {
           if (res.error) {
             registrationForm.form.controls['email'].setErrors({'incorrect': true});

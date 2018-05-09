@@ -22,6 +22,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { CategoryService } from './services/category.service';
 import { TypeService } from './services/type.service';
+import { AuthenticationService } from './../../authentication/authentication.service';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { TypeService } from './services/type.service';
     UserService,
     CountyService,
     CategoryService,
-    TypeService
+    TypeService,
+    AuthenticationService,
   ]
 })
 export class AdminDashboardModule { }

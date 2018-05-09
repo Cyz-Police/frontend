@@ -17,6 +17,7 @@ import { ToastComponent } from './components/toast/toast.component';
 import { IndexComponent } from './components/index/index.component';
 import { ItemSearchComponent } from './components/item-search/item-search.component';
 import { ListComponent } from './components/list/list.component';
+import { AuthenticationService } from './../../authentication/authentication.service';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { ListComponent } from './components/list/list.component';
     ToastComponent, UsersFilterPipe, CommonFilterPipe, ItemSearchComponent, ListComponent,
   ],
   providers: [
+    AuthenticationService,
     UserServicesService,
   ]
 })
