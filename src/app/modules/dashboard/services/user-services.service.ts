@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../interfaces/user';
 import { Headers, RequestOptions } from '@angular/http';
+import { AuthenticationService } from '../../../authentication/authentication.service';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
@@ -18,10 +20,20 @@ export class UserServicesService {
   private deactivationUrl = `${this.mainUrl}/deactivate`;
   private activationUrl = `${this.mainUrl}/activate`;
 
-  constructor(private http: Http) { }
+  private options = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authService.getToken()
+    })
+  };
+
+  constructor(
+    private http: HttpClient,
+    private authService: AuthenticationService
+  ) {}
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get(this.getAllUrl).map(this.extractData).catch(this.handleError);
+    return this.http.get(this.getAllUrl, this.options).map(res => res).catch(this.handleError);
   }
 
   deactivateUser(userId: String) {

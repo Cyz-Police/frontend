@@ -3,6 +3,7 @@ import Constants from '../config/constants';
 import * as jwt_decode from 'jwt-decode';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
@@ -17,7 +18,7 @@ export class AuthenticationService {
   }
 
   setToken(token: string) {
-    localStorage.setItem('JWT', token);
+    localStorage.setItem('JWT', `Bearer ${token}`);
   }
 
   getTokenExpirationDate(token: string): Date {
@@ -46,6 +47,15 @@ export class AuthenticationService {
   
   logout() {
     localStorage.clear();
+  }
+
+  getHeaders() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.getToken()
+      })
+    };
   }
 
   private extractData(res: Response) {
