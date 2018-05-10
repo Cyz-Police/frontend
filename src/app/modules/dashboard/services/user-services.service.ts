@@ -13,7 +13,7 @@ import Constants from '../../../config/constants';
 export class UserServicesService {
   private mainUrl = `${Constants.host}/user`;
 
-  private getAllUrl = `${this.mainUrl}/getAll`;
+  private getAllUrl = `${this.mainUrl}/getByCounty`;
   private roleChangeUrl = `${this.mainUrl}/changeRole`;
   private deactivationUrl = `${this.mainUrl}/deactivate`;
   private activationUrl = `${this.mainUrl}/activate`;
@@ -30,10 +30,6 @@ export class UserServicesService {
 
   activateUser(userId: String) {
     return this.http.post(this.activationUrl, { userId }).map(this.extractData).catch(this.handleError);
-  }
-
-  changeUsersRole(userId: String, role: String) {
-    return this.http.post(this.roleChangeUrl, { userId, role }).map(this.extractData).catch(this.handleError);
   }
 
   private extractData(res: Response) {

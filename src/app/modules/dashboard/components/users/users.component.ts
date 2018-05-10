@@ -79,21 +79,6 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  changeUserRole(user: any, event: any) {
-    const role = event.target.value;
-    if (user.role == role ) return;
-    this.loading = true;
-    this.userServivces.changeUsersRole(user._id, role).subscribe(
-      () => {
-        this.getUsers();
-        this.showToast('Naudotojo rolė paskeista');
-      }, err =>  {
-        this.loading = false;
-        this.showToast('Rolės pakeisti nepavyko');
-      }
-    );
-  }
-
   showToast(message: string) {
     this.message = message;
     console.log(this.message);
