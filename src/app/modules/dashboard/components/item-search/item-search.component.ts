@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from './../../interfaces/item';
+import { ItemService } from './../../services/item.service';
 
 @Component({
   selector: 'app-item-search',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemSearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
   }

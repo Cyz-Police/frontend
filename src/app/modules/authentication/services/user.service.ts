@@ -19,6 +19,7 @@ export class UserService {
   }
 
   loginUser(user) {
+    console.log(user);
     return this.http.post(this.authenticationUrl, { user }).map(this.extractData).catch(this.handleError);
   }
 
