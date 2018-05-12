@@ -1,3 +1,19 @@
-<p>
-  list works!
-</p>
+<div class="content">
+  <h2>Daiktu sarasas</h2>
+  <div class="container-fuild">
+    <div class="row">
+      <div class="col col-md-4">
+        <label class="date-label">Nuo: </label>
+        <input class="date-input" type="date"/>
+      </div>
+      <div class="col col-md-4">
+        <label class="date-label">Iki: </label>
+        <input class="date-input" type="date"/>
+      </div>
+      <div class="col col-md-4">
+        <button class="btn activated" (click)="search()">Gauti sarasa</button>
+      </div>
+    </div>
+  </div>
+  <app-toast [message]="message"></app-toast>
+</div>

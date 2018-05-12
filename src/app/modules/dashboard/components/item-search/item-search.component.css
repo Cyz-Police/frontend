@@ -72,3 +72,33 @@ p.filter {
 	line-height: 35px;
 	font-weight: 600;
 }
+
+.item-id {
+	font-weight: 600;
+	text-align: center;
+}
+
+.item-photo {
+	width: 100%;
+	display: block;
+	margin: 0 auto;
+	height: 20rem;
+	object-fit: cover;
+}
+
+.item-info-list {
+	list-style: none;
+	text-transform: capitalize;
+}
+
+.item-info {
+	padding: 1rem;
+}
+
+.info-email {
+	text-transform: none;
+}
+
+.item {
+	margin-top: 3rem;
+}

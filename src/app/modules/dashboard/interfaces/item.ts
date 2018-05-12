@@ -4,5 +4,5 @@ export interface Item {
 	author: string,
 	category: string,
 	type: string,
-	county: string
+	countyCreated: string
 }

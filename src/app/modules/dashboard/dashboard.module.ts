@@ -19,6 +19,7 @@ import { IndexComponent } from './components/index/index.component';
 import { ItemSearchComponent } from './components/item-search/item-search.component';
 import { ListComponent } from './components/list/list.component';
 import { AuthenticationService } from './../../authentication/authentication.service';
+import { ItemService } from './services/item.service'; 
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { AuthenticationService } from './../../authentication/authentication.ser
   providers: [
     AuthenticationService,
     UserServicesService,
+    ItemService
   ]
 })
 export class DashboardModule { }

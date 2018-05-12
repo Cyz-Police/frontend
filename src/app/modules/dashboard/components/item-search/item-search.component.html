@@ -1,5 +1,29 @@
 <div class="content">
   <h2>Paieška</h2>
-  <app-common-searchbar (passSearch)="onSearch($event)"></app-common-searchbar>
+  <div class="container-fuild">
+    <div class="row">
+      <div class="col col-md-9">
+        <input type="text" placeholder="Iveskite daikto koda" class="form-control search" [(ngModel)]="searchValue">
+      </div>
+      <div class="col col-md-3">
+        <button class="btn activated" (click)="search()">Ieskoti</button>
+      </div>
+    </div>
+  </div>
+  <div class="row item" *ngIf="item">
+    <div class="col col-md-10">
+      <img class="item-photo" src="{{ item.photo }}"/>
+    </div>
+    <div class="col col-md-10">
+      <ul class="item-info-list list-group">
+        <li class="item-info list-group-item">Kategorija: {{ item.category.title }}</li>
+        <li class="item-info list-group-item">Modelis: {{ item.type.title }}</li>
+        <li class="item-info list-group-item" *ngIf="item.extra">Papildomi pozymiai: {{ item.extra }}</li>
+        <li class="item-info list-group-item">Savininko A.K. {{ item.owner.personalId }}</li>
+        <li class="item-info list-group-item">Apskritis: {{ item.countyCreated.title }}</li>
+        <li class="item-info info-email list-group-item">Autorius: {{ item.author.email }}</li>
+      </ul>
+    </div>
+  </div>
   <app-toast [message]="message"></app-toast>
 </div>
