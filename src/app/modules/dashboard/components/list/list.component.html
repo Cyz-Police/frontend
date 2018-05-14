@@ -4,14 +4,14 @@
     <div class="row">
       <div class="col col-md-4">
         <label class="date-label">Nuo: </label>
-        <input class="date-input" type="date"/>
+        <input class="date-input" type="date" [(ngModel)]="dateFrom"/>
       </div>
       <div class="col col-md-4">
         <label class="date-label">Iki: </label>
-        <input class="date-input" type="date"/>
+        <input class="date-input" type="date" [(ngModel)]="dateTo"/>
       </div>
       <div class="col col-md-4">
-        <button class="btn activated" (click)="search()">Gauti sarasa</button>
+        <button class="btn activated" (click)="getList()">Gauti sarasa</button>
       </div>
     </div>
   </div>
