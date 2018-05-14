@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
   getList() {
     this.itemService.getList(this.dateFrom, this.dateTo).subscribe(
       file => {
-        const fileName = `sarasas-${this.dateFrom}-${this.dateTo}`;
+        const fileName = `sarasas-${this.dateFrom}-${this.dateTo}.csv`;
         const objectUrl: string = URL.createObjectURL(file);
         const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
         a.href = objectUrl;
