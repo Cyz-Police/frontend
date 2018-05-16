@@ -1,6 +1,7 @@
 <div class="content">
   <h2>Daiktu sarasas</h2>
-  <div class="container-fuild">
+  <div class="container">
+
     <div class="row">
       <div class="col col-md-4">
         <label class="date-label">Nuo: </label>
@@ -15,5 +16,6 @@
       </div>
     </div>
   </div>
-  <app-toast [message]="message"></app-toast>
+  <app-circle-loader [loading]="loading"></app-circle-loader>
+  <app-toast [message]="toast"></app-toast>
 </div>

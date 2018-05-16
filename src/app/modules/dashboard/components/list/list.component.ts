@@ -9,6 +9,8 @@ import { ItemService } from '../../services/item.service';
 export class ListComponent implements OnInit {
   private dateFrom: Date;
   private dateTo: Date;
+  private loading: boolean = false;
+  private toast: string;
 
   constructor(private itemService: ItemService) { }
 
@@ -16,21 +18,37 @@ export class ListComponent implements OnInit {
   }
 
   getList() {
+    this.loading = true;
     this.itemService.getList(this.dateFrom, this.dateTo).subscribe(
       file => {
-        const fileName = `sarasas-${this.dateFrom}-${this.dateTo}`;
-        const objectUrl: string = URL.createObjectURL(file);
-        const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
-        a.href = objectUrl;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();        
-    
-        document.body.removeChild(a);
-        URL.revokeObjectURL(objectUrl);
+        this.loading = false;
+        this.downloadFile(file);
+        this.showToast('Sarasas sudarytas');
       },
-      err => alert(err)
+      err =>  {
+        this.loading = false;
+        this.showToast('Saraso gauti nepavyko');
+      }
     );
   }
+  
+  showToast(message: string) {
+    this.toast = message;
+    setTimeout(() => { 
+      this.toast = undefined;
+    }, 2800);
+  }
 
+  downloadFile(file: any) {
+    const fileName = `sarasas-${this.dateFrom}-${this.dateTo}`;
+    const objectUrl: string = URL.createObjectURL(file);
+    const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+    a.href = objectUrl;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();        
+    document.body.removeChild(a);
+    URL.revokeObjectURL(objectUrl);
+  }
 }
+

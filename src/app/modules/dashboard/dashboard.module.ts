@@ -19,7 +19,8 @@ import { IndexComponent } from './components/index/index.component';
 import { ItemSearchComponent } from './components/item-search/item-search.component';
 import { ListComponent } from './components/list/list.component';
 import { AuthenticationService } from './../../authentication/authentication.service';
-import { ItemService } from './services/item.service'; 
+import { ItemService } from './services/item.service';
+import { CircleLoaderComponent } from './components/circle-loader/circle-loader.component'; 
 
 @NgModule({
   imports: [
@@ -32,7 +33,7 @@ import { ItemService } from './services/item.service';
   declarations: [
     IndexComponent, NavbarComponent, HeaderComponent,
     UsersComponent, CommonSearchbarComponent, LoaderComponent,
-    ToastComponent, UsersFilterPipe, CommonFilterPipe, ItemSearchComponent, ListComponent,
+    ToastComponent, UsersFilterPipe, CommonFilterPipe, ItemSearchComponent, ListComponent, CircleLoaderComponent,
   ],
   providers: [
     AuthenticationService,
