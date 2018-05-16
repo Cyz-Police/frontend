@@ -37,7 +37,7 @@ export class ItemService {
   }
 
   getList(dateFrom: Date, dateTo: Date) {
-    return this.http.get(`${this.pullUrl}/${dateFrom}/${dateTo}`,this.fileOptions).map(res => new Blob([res],{ type: 'text/csv' })).catch(this.handleError)
+    return this.http.get(`${this.pullUrl}/${dateFrom}/${dateTo}`,this.fileOptions).map(res => new Blob(['\ufeff', res],{ type: 'text/csv' })).catch(this.handleError)
   }
 
   private handleError (error: Response | any) {
