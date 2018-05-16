@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
+import { Item } from './../interfaces/item';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import Constants from '../../../config/constants';
-
-import { Item } from './../interfaces/item';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ItemService {
@@ -30,26 +30,19 @@ export class ItemService {
   constructor(
     private http: HttpClient,
     private authService: AuthenticationService,
-  ) { }
+  ) { };
 
-  getById(markId): Observable<Item> {
-    return this.http.get(`${this.serachUrl}/${markId}`).map(res => res).catch(this.handleError);
-  }
-
-  getList(dateFrom: Date, dateTo: Date) {
-    return this.http.get(`${this.pullUrl}/${dateFrom}/${dateTo}`,this.fileOptions).map(res => new Blob(['\ufeff', res],{ type: 'text/csv' })).catch(this.handleError)
-  }
-
-  private handleError (error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    return Observable.throw(errMsg);
+  getById(markId) {
+    return this.http.get<Item>(`${this.serachUrl}/${markId}`).pipe(catchError(err => this.handleError(err)));
   };
 
+  getList(dateFrom: Date, dateTo: Date) {
+    return this.http.get(`${this.pullUrl}/${dateFrom}/${dateTo}`,this.fileOptions).pipe(catchError(err => this.handleError(err)));
+  };
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status == 401 || error.status == 403)
+        return this.authService.logout();
+    return Observable.throw('Serverio klaida')
+  };
 }

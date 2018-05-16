@@ -3,63 +3,34 @@
 	margin-bottom: 90px;
 }
 
-h2 {
+.title {
 	font-family: 'Lato', sans-serif;
 	font-weight: 600;
 	letter-spacing: 1px;
 	margin-bottom: 1.2rem;
 }
 
-button {
+.btn {
 	font-weight: 600;
 	border-radius: 10px;
 	border: 2px solid #eb008d;
-	min-width: 50%;
-	max-width: 100%;
-}
-
-.activated,
-.deactivated:hover {
 	background-color: #eb008d;
 	color: white;
+	min-width: 50%;
+	max-width: 100%;
+	padding: .7rem;
+	margin-bottom: 1rem;
 }
 
-.deactivated,
 .activated:hover {
 	background-color: white;
 	color: #eb008d;
 }
 
-.edit {
-	padding: 0 1rem!important;
-	overflow: scroll;
-	border: 0;
-	margin: 0;
-	color: #888a8c;
-	vertical-align: middle;
-	padding: .4rem;
-}
-
-.edit:hover {
-	color: #212529;
-}
-
-.edit:focus {	
-	border: 0;
-	outline: 0;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
-}
-
-.name {
-	white-space: nowrap;
-	overflow: scroll;
-}
-
-p.name {
-	line-height: 2.1rem;
-	margin: 0;
+.search {
+	padding: .7rem;
+	padding-left: 1.2rem;
+	margin-bottom: 1rem;
 }
 
 ::-webkit-scrollbar {
@@ -68,14 +39,8 @@ p.name {
 	background: transparent;
 }
 
-p.filter {
-	line-height: 35px;
-	font-weight: 600;
-}
-
-.item-id {
-	font-weight: 600;
-	text-align: center;
+.item {
+	margin-top: 3rem;
 }
 
 .item-photo {
@@ -97,8 +62,4 @@ p.filter {
 
 .info-email {
 	text-transform: none;
-}
-
-.item {
-	margin-top: 3rem;
 }

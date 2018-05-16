@@ -15,7 +15,7 @@ export class ListComponent implements OnInit {
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
-  }
+  };
 
   getList() {
     this.loading = true;
@@ -30,16 +30,17 @@ export class ListComponent implements OnInit {
         this.showToast('Saraso gauti nepavyko');
       }
     );
-  }
+  };
   
   showToast(message: string) {
     this.toast = message;
     setTimeout(() => { 
       this.toast = undefined;
     }, 2800);
-  }
+  };
 
-  downloadFile(file: any) {
+  downloadFile(res: any) {
+    const file = new Blob(['\ufeff', res],{ type: 'text/csv' })
     const fileName = `sarasas-${this.dateFrom}-${this.dateTo}`;
     const objectUrl: string = URL.createObjectURL(file);
     const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
@@ -49,6 +50,6 @@ export class ListComponent implements OnInit {
     a.click();        
     document.body.removeChild(a);
     URL.revokeObjectURL(objectUrl);
-  }
+  };
 }
 

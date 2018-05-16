@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServicesService } from './../../services/user-services.service';
-import { ToastComponent } from './../toast/toast.component';
 import { User } from './../../interfaces/user';
 
 @Component({
@@ -14,30 +13,19 @@ export class UsersComponent implements OnInit {
   private searchValue;
   private selectedCounty;
   private loading: boolean = false;
-  private message: string;
-
-  private roles = [
-    { role: '[USER]', title: 'Darbuotojas' },
-    { role: '[ADMIN]', title: 'Viršininkas' },
-    { role: '[SUPERADMIN]', title: 'Administratorius' }
-  ];
+  private toast: string;
 
   constructor(
     private userServivces: UserServicesService,
-  ) { }
+  ) { };
 
   ngOnInit() {
     this.getUsers();
-  }
+  };
   
   onSearch(text: string):void {
     this.searchValue = text;
-  }
-
-  onCountyChange(user: User, event: any) {
-    const countyId = event.target.value;
-    this.selectedCounty = countyId;
-  }
+  };
 
   getUsers() {
     this.loading = true;
@@ -47,14 +35,13 @@ export class UsersComponent implements OnInit {
         this.loading = false;
       },
       err => {
-        console.log(err);
         this.loading = false;
         this.showToast('Serveris nepasiekiamas');
       }
     )
-  }
+  };
 
-  changeUserStatus(user: any) {
+  changeUserStatus(user: User) {
     if (user.active) {
       this.loading = true;
       this.userServivces.deactivateUser(user._id).subscribe(
@@ -78,14 +65,12 @@ export class UsersComponent implements OnInit {
         }
       );
     }
-  }
+  };
 
   showToast(message: string) {
-    this.message = message;
-    console.log(this.message);
+    this.toast = message;
     setTimeout(() => { 
-      this.message = undefined;
-        console.log(this.message);
+      this.toast = undefined;
     }, 2800);
-  }
+  };
 }

@@ -3,14 +3,14 @@
 	margin-bottom: 90px;
 }
 
-h2 {
+.title {
 	font-family: 'Lato', sans-serif;
 	font-weight: 600;
 	letter-spacing: 1px;
 	margin-bottom: 1.2rem;
 }
 
-button {
+.btn {
 	font-weight: 600;
 	border-radius: 10px;
 	border: 2px solid #eb008d;
@@ -30,45 +30,16 @@ button {
 	color: #eb008d;
 }
 
-.edit {
-	padding: 0 1rem!important;
-	overflow: scroll;
-	border: 0;
-	margin: 0;
-	color: #888a8c;
-	vertical-align: middle;
-	padding: .4rem;
-}
-
-.edit:hover {
-	color: #212529;
-}
-
-.edit:focus {	
-	border: 0;
-	outline: 0;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
-}
-
 .name {
+	text-transform: capitalize;
+	line-height: 2.6rem;
+	margin: 0;
 	white-space: nowrap;
 	overflow: scroll;
-}
-
-p.name {
-	line-height: 2.1rem;
-	margin: 0;
 }
 
 ::-webkit-scrollbar {
 	width: 0px;
 	height: 0px;
 	background: transparent;
-}
-
-p.filter {
-	line-height: 35px;
-	font-weight: 600;
 }

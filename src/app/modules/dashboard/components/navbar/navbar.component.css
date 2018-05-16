@@ -28,7 +28,7 @@
   margin-top: 2.5rem;
 }
 
-.nav-link {
+.nav-link, .logout {
   display: inline-flex;
   vertical-align: middle;
   font-weight: 500;
@@ -39,7 +39,8 @@ i {
   margin-right: .6rem;
 }
 
-.nav-link:hover{
+.nav-link:hover, .logout:hover {
+  cursor: pointer;
   font-weight: 500;
   color: #424242;
 }
@@ -55,6 +56,15 @@ i {
 	box-shadow: 0 3px 4px 0 rgba(0,0,0,.14), 0 3px 3px -2px rgba(0,0,0,.2), 0 1px 8px 0 rgba(0,0,0,.12);
 }
 
+.navbar-nav {
+  flex-direction: row;
+  margin: 0 auto;
+}
+
+.sidebar-mobile .nav-link {
+  margin-right: 1.2rem;
+}
+
 @media only screen and (min-width: 576px) {
   .sidebar-mobile {
     display: none;
@@ -64,22 +74,7 @@ i {
   .sidebar {
     display: none;
   }
-}
-
-.navbar-nav {
-  flex-direction: row;
-}
-
-.sidebar-mobile .nav-link {
-  margin-right: 1.2rem;
-}
-
-.navbar-nav {
-  margin: 0 auto;
-}
-
-p.title {
-  font-weight: 500;
-  color: #9c9c9c;
-  padding: 8px 16px;
+  .logout {
+    margin: 0;
+  }
 }

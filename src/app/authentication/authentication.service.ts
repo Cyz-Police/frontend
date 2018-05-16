@@ -4,6 +4,7 @@ import * as jwt_decode from 'jwt-decode';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
@@ -11,7 +12,10 @@ export class AuthenticationService {
   private mainUrl = `${Constants.host}/user`;
 
 
-  constructor(private http: Http) { }
+  constructor(
+    private http: Http,
+    private router: Router
+  ) { }
 
   getToken(): string {
     return localStorage.getItem('JWT');
@@ -47,6 +51,7 @@ export class AuthenticationService {
   
   logout() {
     localStorage.clear();
+    return this.router.navigate(['/authentication/login']);
   }
 
   getHeaders() {
