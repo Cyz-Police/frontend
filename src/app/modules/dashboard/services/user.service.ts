@@ -7,19 +7,14 @@ import { AuthenticationService } from '../../../authentication/authentication.se
 import Constants from '../../../config/constants';
 
 @Injectable()
-export class UserServicesService {
+export class UserService {
   private mainUrl = `${Constants.host}/user`;
 
   private getAllUrl = `${this.mainUrl}/getByCounty`;
   private deactivationUrl = `${this.mainUrl}/deactivate`;
   private activationUrl = `${this.mainUrl}/activate`;
-
-  private options = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': this.authService.getToken()
-    })
-  };
+  
+  private headers = this.authService.getHeaders();
 
   constructor(
     private http: HttpClient,
@@ -27,15 +22,15 @@ export class UserServicesService {
   ) {};
 
   getAllUsers() {
-    return this.http.get<User[]>(this.getAllUrl, this.options).pipe(catchError(err => this.handleError(err)));
+    return this.http.get<User[]>(this.getAllUrl, this.headers).pipe(catchError(err => this.handleError(err)));
   };
 
   deactivateUser(userId: String) {
-    return this.http.post(this.deactivationUrl, { userId }, this.options).pipe(catchError(err => this.handleError(err)));
+    return this.http.post(this.deactivationUrl, { userId }, this.headers).pipe(catchError(err => this.handleError(err)));
   };
 
   activateUser(userId: String) {
-    return this.http.post(this.activationUrl, { userId }, this.options).pipe(catchError(err => this.handleError(err)));
+    return this.http.post(this.activationUrl, { userId }, this.headers).pipe(catchError(err => this.handleError(err)));
   };
 
   private handleError(error: HttpErrorResponse) {

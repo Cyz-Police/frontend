@@ -12,13 +12,8 @@ export class ItemService {
   private serachUrl = `${this.mainUrl}/getById`;
   private pullUrl = `${this.mainUrl}/pull`;
   
-  private options = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': this.authService.getToken()
-    })
-  };
-  
+  private headers = this.authService.getHeaders();
+
   private fileOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -33,11 +28,11 @@ export class ItemService {
   ) { };
 
   getById(markId) {
-    return this.http.get<Item>(`${this.serachUrl}/${markId}`).pipe(catchError(err => this.handleError(err)));
+    return this.http.get<Item>(`${this.serachUrl}/${markId}`, this.headers).pipe(catchError(err => this.handleError(err)));
   };
 
   getList(dateFrom: Date, dateTo: Date) {
-    return this.http.get(`${this.pullUrl}/${dateFrom}/${dateTo}`,this.fileOptions).pipe(catchError(err => this.handleError(err)));
+    return this.http.get(`${this.pullUrl}/${dateFrom}/${dateTo}`, this.fileOptions).pipe(catchError(err => this.handleError(err)));
   };
 
   private handleError(error: HttpErrorResponse) {

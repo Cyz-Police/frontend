@@ -11,7 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsersComponent } from './components/users/users.component';
 import { CommonSearchbarComponent } from './components/common-searchbar/common-searchbar.component';
 import { UsersFilterPipe } from './pipes/users-filter.pipe';
-import { UserServicesService } from './services/user-services.service';
+import { UserService } from './services/user.service';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { IndexComponent } from './components/index/index.component';
@@ -36,7 +36,7 @@ import { CircleLoaderComponent } from './components/circle-loader/circle-loader.
   ],
   providers: [
     AuthenticationService,
-    UserServicesService,
+    UserService,
     ItemService
   ]
 })

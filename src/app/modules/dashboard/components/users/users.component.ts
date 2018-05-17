@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserServicesService } from './../../services/user-services.service';
+import { UserService } from './../../services/user.service';
 import { User } from './../../interfaces/user';
 
 @Component({
@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
   private toast: string;
 
   constructor(
-    private userServivces: UserServicesService,
+    private userServivces: UserService,
   ) { };
 
   ngOnInit() {

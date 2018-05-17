@@ -18,25 +18,24 @@ export class AuthenticationService {
   ) { }
 
   getToken(): string {
-    return localStorage.getItem('JWT');
-  }
+    console.log((this.isTokenValid()));
+    return `Bearer ${localStorage.getItem('JWT')}`;
+  };
 
   setToken(token: string) {
-    localStorage.setItem('JWT', `Bearer ${token}`);
-  }
+    localStorage.setItem('JWT', token);
+  };
 
   getTokenExpirationDate(token: string): Date {
     const decoded = jwt_decode(token);
-
     if(decoded.exp === undefined) return null;
-
     const date = new Date(0);
     date.setUTCSeconds(decoded.exp);
     return date;
   }
 
   isTokenValid(): boolean {
-    const token = this.getToken();
+    const token = localStorage.getItem('JWT');
     if(!token) return false;
 
     const date = this.getTokenExpirationDate(token);
@@ -62,21 +61,4 @@ export class AuthenticationService {
       })
     };
   }
-
-  private extractData(res: Response) {
-    let body = res.json();
-    return body || {};
-  }
-
-  private handleError (error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    return Observable.throw(errMsg);
-  };
 }
