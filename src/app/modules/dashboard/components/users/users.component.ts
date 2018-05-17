@@ -47,10 +47,10 @@ export class UsersComponent implements OnInit {
       this.userServivces.deactivateUser(user._id).subscribe(
         () => {
           this.getUsers();
-          this.showToast('Naudotojas deaktyvuotas')
+          this.showToast('Darbuotojas deaktyvuotas')
         }, err =>  {
           this.loading = false;
-          this.showToast('Naudotojo deaktyvuoti nepavyko');
+          this.showToast('Darbuotojo deaktyvuoti nepavyko');
         }
       );
     } else {
@@ -58,10 +58,10 @@ export class UsersComponent implements OnInit {
       this.userServivces.activateUser(user._id).subscribe(
         () => {
           this.getUsers();
-          this.showToast('Naudotojas aktyvuotas')
+          this.showToast('Darbuotojas aktyvuotas')
         }, err => {
           this.loading = false;
-          this.showToast('Nepavyko aktyvuoti naudotojo');
+          this.showToast('Darbuotojo aktyvuoti nepavyko');
         }
       );
     }

@@ -10,6 +10,8 @@ import { ItemService } from './../../services/item.service';
 export class ItemSearchComponent implements OnInit {
   private searchValue: string;
   private item: Item;
+  private loading: boolean;
+  private toast: string;
 
   constructor(private itemService: ItemService) { }
 
@@ -17,12 +19,31 @@ export class ItemSearchComponent implements OnInit {
   }
 
   search() {
-    this.itemService.getById(this.searchValue).subscribe(
-      item => {
-        this.item = item;
-        console.log(this.item);
-      }, err => console.log(err)
-    );
-  }
+    if (this.searchValue.length === 11) {
+      this.loading = true;
+      this.itemService.getById(this.searchValue).subscribe(
+        item => {
+          console.log(item);
+          if (item != null) {
+            this.loading = false;
+            this.item = item;
+            this.showToast('Paieška sėkminga');
+          } else this.handleError() 
+        }, err => this.handleError()
+      );
+    } else this.showToast('Netinkamas kodas');
+  };
 
+  handleError() {
+    this.item = undefined;
+    this.loading = false;
+    this.showToast('Paieška nesėkminga');
+  }
+  
+  showToast(message: string) {
+    this.toast = message;
+    setTimeout(() => { 
+      this.toast = undefined;
+    }, 2800);
+  };
 }

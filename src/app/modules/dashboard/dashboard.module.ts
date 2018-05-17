@@ -10,7 +10,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsersComponent } from './components/users/users.component';
 import { CommonSearchbarComponent } from './components/common-searchbar/common-searchbar.component';
-import { CommonFilterPipe } from './pipes/common-filer.pipe';
 import { UsersFilterPipe } from './pipes/users-filter.pipe';
 import { UserServicesService } from './services/user-services.service';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -33,7 +32,7 @@ import { CircleLoaderComponent } from './components/circle-loader/circle-loader.
   declarations: [
     IndexComponent, NavbarComponent, HeaderComponent,
     UsersComponent, CommonSearchbarComponent, LoaderComponent,
-    ToastComponent, UsersFilterPipe, CommonFilterPipe, ItemSearchComponent, ListComponent, CircleLoaderComponent,
+    ToastComponent, UsersFilterPipe, ItemSearchComponent, ListComponent, CircleLoaderComponent,
   ],
   providers: [
     AuthenticationService,

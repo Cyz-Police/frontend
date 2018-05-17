@@ -3,10 +3,10 @@
   <div class="container-fuild">
     <div class="row">
       <div class="col col-md-9">
-        <input type="text" placeholder="Iveskite daikto koda" class="form-control search" [(ngModel)]="searchValue">
+        <input type="text" placeholder="Iveskite identifikacijos kodą" class="form-control search" [(ngModel)]="searchValue">
       </div>
       <div class="col col-md-3">
-        <button class="btn activated" (click)="search()">Ieskoti</button>
+        <button class="btn activated" (click)="search()">Ieškoti</button>
       </div>
     </div>
   </div>
@@ -25,5 +25,6 @@
       </ul>
     </div>
   </div>
-  <app-toast [message]="message"></app-toast>
+  <app-circle-loader [loading]="loading"></app-circle-loader>
+  <app-toast [message]="toast"></app-toast>
 </div>

@@ -23,11 +23,11 @@ export class ListComponent implements OnInit {
       file => {
         this.loading = false;
         this.downloadFile(file);
-        this.showToast('Sarasas sudarytas');
+        this.showToast('Sąrašas sudarytas');
       },
       err =>  {
         this.loading = false;
-        this.showToast('Saraso gauti nepavyko');
+        this.showToast('Sąrašo sudaryti nepavyko');
       }
     );
   };
@@ -41,7 +41,7 @@ export class ListComponent implements OnInit {
 
   downloadFile(res: any) {
     const file = new Blob(['\ufeff', res],{ type: 'text/csv' })
-    const fileName = `sarasas-${this.dateFrom}-${this.dateTo}`;
+    const fileName = `sarasas-${this.dateFrom}-${this.dateTo}.csv`;
     const objectUrl: string = URL.createObjectURL(file);
     const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
     a.href = objectUrl;

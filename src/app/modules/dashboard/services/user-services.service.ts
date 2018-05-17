@@ -31,11 +31,11 @@ export class UserServicesService {
   };
 
   deactivateUser(userId: String) {
-    return this.http.post(this.deactivationUrl, { userId }).pipe(catchError(err => this.handleError(err)));
+    return this.http.post(this.deactivationUrl, { userId }, this.options).pipe(catchError(err => this.handleError(err)));
   };
 
   activateUser(userId: String) {
-    return this.http.post(this.activationUrl, { userId }).pipe(catchError(err => this.handleError(err)));
+    return this.http.post(this.activationUrl, { userId }, this.options).pipe(catchError(err => this.handleError(err)));
   };
 
   private handleError(error: HttpErrorResponse) {
